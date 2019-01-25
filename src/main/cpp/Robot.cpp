@@ -67,6 +67,7 @@ void Robot::TeleopInit() {
 
 void Robot::TeleopPeriodic() {
   test.SetSelectedSensorPosition(70, 0, 0);
+  std::cout << test.GetSensorCollection().GetQuadraturePosition() << "\n";
 }
 
 void Robot::TestPeriodic() {}
