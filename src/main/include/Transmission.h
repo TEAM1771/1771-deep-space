@@ -12,11 +12,7 @@ enum Direction {
 template <typename Motor_Controller>
 class Transmission {
 public:
-	// Don't allow copy/move constructors		// this is implicitly true, you dont need to say it
-	Transmission(Transmission const& t) = delete;	// redundant
-	Transmission& operator=(Transmission const& t) = delete;	// redundant
 
-	// Constructor takes an initializer list of int-direction pairs // could you write a more redundant comment
 	Transmission(std::initializer_list<std::pair<int, Direction>> motor_info) : 
 			leader( (motor_info.end()-1)->first ) {
 		// Initialize leader motor and create a const variable to store the leader motor's info
@@ -35,7 +31,7 @@ public:
 		}
 	}
 
-	// Desructor	// apparently you can
+	// Manual destruction required due to allocation of pointers
 	~Transmission(){
 		for(Motor_Controller* follower : followers)
 			follower->~Motor_Controller();
