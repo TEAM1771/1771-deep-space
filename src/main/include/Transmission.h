@@ -1,7 +1,8 @@
 #pragma once
 
-#include <vector>
 #include <initializer_list>
+#include <string>
+
 #include <ctre/Phoenix.h>
 
 enum Direction {
