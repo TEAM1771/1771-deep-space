@@ -3,8 +3,6 @@
 #include <initializer_list>
 #include <string>
 
-#include <ctre/Phoenix.h>
-
 enum Direction {
 	Forward,
 	Reverse
