@@ -12,5 +12,8 @@
     ".project": true
   },
   "C_Cpp.default.configurationProvider": "vscode-wpilib",
-  "git.ignoreLimitWarning": true
+  "git.ignoreLimitWarning": true,
+  "files.associations": {
+    "initializer_list": "cpp"
+  }
 }
