@@ -41,12 +41,6 @@ public:
 			follower->~Motor_Controller();
 	}
 
-	// Depreciated
-	// // Set leader motor
-	// void Set(ControlMode control_mode, double value){
-	// 	leader.Set(control_mode, value);
-	// }
-
 	Motor_Controller* operator->(){
 		return &leader;
 	}
