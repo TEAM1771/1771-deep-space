@@ -26,7 +26,7 @@ public:
 		// Store follower motors in vector
 		followers.reserve(motor_info.size()-1);
 		for(auto m_inf = motor_info.begin(); m_inf != motor_info.end()-1; m_inf++)
-			followers.push_back( (new Motor_Controller( m_inf->first) ) );
+			followers +=  (new Motor_Controller( m_inf->first) );
 
 		// Invert followers depending on direction and set to follow mode
 		for(int i = 0; i < motor_info.size()-1; i++){
@@ -47,5 +47,5 @@ public:
 
 private:
 	Motor_Controller leader;
-	std::vector<Motor_Controller*> followers;
+	std::basic_string<Motor_Controller*> followers;
 };
