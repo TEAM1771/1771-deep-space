@@ -15,6 +15,13 @@ void Robot::RobotInit() {
   m_chooser.SetDefaultOption(kAutoNameDefault, kAutoNameDefault);
   m_chooser.AddOption(kAutoNameCustom, kAutoNameCustom);
   frc::SmartDashboard::PutData("Auto Modes", &m_chooser);
+
+  test->ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Relative, 0);
+  test->SetStatusFramePeriod(StatusFrame::Status_1_General_, 5);
+  test->SetSensorPhase(false);
+  test->Config_kP(0, 1);
+  test->Config_kI(0, 0.001);
+  test->Config_kD(0, 1);
 }
 
 /**
@@ -25,7 +32,9 @@ void Robot::RobotInit() {
  * <p> This runs after the mode specific periodic functions, but before
  * LiveWindow and SmartDashboard integrated updating.
  */
-void Robot::RobotPeriodic() {}
+void Robot::RobotPeriodic() {
+    std::cout << test->GetSensorCollection().GetQuadraturePosition() << "\n";
+}
 
 /**
  * This autonomous (along with the chooser code above) shows how to select
@@ -59,15 +68,10 @@ void Robot::AutonomousPeriodic() {
   }
 }
 
-void Robot::TeleopInit() {
-  test.ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Relative, 0, 30);
-  test.SetStatusFramePeriod(StatusFrame::Status_1_General_, 5, 30);
-  test.SetSensorPhase(false);
-}
+void Robot::TeleopInit() { }
 
 void Robot::TeleopPeriodic() {
-  test.SetSelectedSensorPosition(70, 0, 0);
-  std::cout << test.GetSensorCollection().GetQuadraturePosition() << "\n";
+  test->Set(ControlMode::Position, 70);
 }
 
 void Robot::TestPeriodic() {}
