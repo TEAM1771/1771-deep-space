@@ -30,5 +30,6 @@ class Robot : public frc::TimedRobot {
   const std::string kAutoNameCustom = "My Auto";
   std::string m_autoSelected;
 
-  WPI_TalonSRX test{7};
+  Transmission<WPI_TalonSRX> test {{ {  7, Forward }, { 10, Forward } }}; /*  Comment this line to uncomment the next
+  WPI_TalonSRX test{7}; //*/
 };
