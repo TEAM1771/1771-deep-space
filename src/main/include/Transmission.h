@@ -16,13 +16,19 @@ public:
 	{
 		// Invert followers depending on direction and set to follow mode
 		int i = -1;
-		followers.reserve(motor_info.size());
+		motors.reserve(motor_info.size());
 		for(auto const& m_info : motor_info){
-			followers += new Motor_Controller(m_info.first);
+			motors += new Motor_Controller(m_info.first);
 			if(++i != 0) 		// Skip First term
-				followers[i]->Set(ControlMode::Follower, motor_info.begin()->first);
-			followers[i]->SetInverted(m_info.second);
+				motors[i]->Set(ControlMode::Follower, motor_info.begin()->first);
+			motors[i]->SetInverted(m_info.second);
 		}
+	}
+
+	~Transmission()
+	{
+		for(auto* motor : motors)
+			motor->~MotorController();
 	}
 
 	Motor_Controller* operator->(){
@@ -31,5 +37,5 @@ public:
 
 private:
 	//Motor_Controller leader;
-	std::basic_string<Motor_Controller*> followers;
+	std::basic_string<Motor_Controller*> motors;
 };
