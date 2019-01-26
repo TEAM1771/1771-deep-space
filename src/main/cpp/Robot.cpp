@@ -63,8 +63,11 @@ void Robot::TeleopInit() {
   test->ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Relative, 0, 30);
   test->SetStatusFramePeriod(StatusFrame::Status_1_General_, 5, 30);
   test->SetSensorPhase(false);
+  
+  test->Config_kP(1);
+  test->Config_kI(.001);
+  test->Config_kD(1);
 }
-
 void Robot::TeleopPeriodic() {
   test->Set(ControlMode::Position, 70);
   std::cout << test->GetSensorCollection().GetQuadraturePosition() << "\n";
