@@ -1,6 +1,6 @@
 #include <DriveTrain.h>
 
-void DriveTrain::tank(double lrate, double rrate) {
-    ltrm->Set(ControlMode::PercentOutput, lrate);
-    rtrm->Set(ControlMode::PercentOutput, rrate);
+void DriveTrain::tank(double const lrate, double const rrate) {
+    ltrm->Set(lrate);
+    rtrm->Set(rrate);
 }

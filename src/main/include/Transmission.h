@@ -30,17 +30,17 @@ public:
 		}
 	}
 
-	// Manual destruction required due to allocation of pointers
-	~Transmission(){
-		for(Motor_Controller* follower : followers)
-			follower->~Motor_Controller();
+	~Transmission()
+	{
+		for(auto* motor : motors)
+			motor->~MotorController();
 	}
 
 	Motor_Controller* operator->(){
-		return &leader;
+		return followers[0];
 	}
 
 private:
-	Motor_Controller leader;
-	std::basic_string<Motor_Controller*> followers;
+	//Motor_Controller leader;
+	std::basic_string<Motor_Controller*> motors;
 };
