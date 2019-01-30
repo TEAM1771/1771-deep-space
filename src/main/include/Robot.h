@@ -11,9 +11,9 @@
 
 #include <frc/TimedRobot.h>
 #include <frc/smartdashboard/SendableChooser.h>
+#include <frc/Joystick.h>
 
 #include <ctre/Phoenix.h>
-#include <Transmission.h>
 
 #include <Transmission.h>
 
@@ -33,6 +33,5 @@ class Robot : public frc::TimedRobot {
   const std::string kAutoNameCustom = "My Auto";
   std::string m_autoSelected;
 
-  Transmission<WPI_TalonSRX> test {{ {  7, Forward }, { 10, Forward } }}; /*  Comment this line to uncomment the next
-  WPI_TalonSRX* test{ new WPI_TalonSRX(7) }; //*/
+  Transmission<WPI_TalonSRX> test {{ {  7, Forward }, { 10, Forward } }}; 
 };

@@ -19,9 +19,18 @@ void Robot::RobotInit() {
   test->ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Relative, 0);
   test->SetStatusFramePeriod(StatusFrame::Status_1_General_, 5);
   test->SetSensorPhase(false);
+
+  test->ConfigNominalOutputForward(0);
+  test->ConfigNominalOutputReverse(0);
+  test->ConfigPeakOutputForward(1);
+  test->ConfigPeakOutputReverse(-1);
+
+  test->Config_kF(0, 0.1097);
   test->Config_kP(0, 1);
   test->Config_kI(0, 0.001);
   test->Config_kD(0, 1);
+
+  test->SetSelectedSensorPosition(0);
 }
 
 /**
@@ -33,7 +42,8 @@ void Robot::RobotInit() {
  * LiveWindow and SmartDashboard integrated updating.
  */
 void Robot::RobotPeriodic() {
-    std::cout << test->GetSensorCollection().GetQuadraturePosition() << "\n";
+    std::cout << "Encoder Pos:" << test->GetSensorCollection().GetQuadraturePosition() << "\n";
+    std::cout << "Velocity:" << test->GetSelectedSensorVelocity() << "\n";
 }
 
 /**
@@ -68,11 +78,11 @@ void Robot::AutonomousPeriodic() {
   }
 }
 
-void Robot::TeleopInit() { }
-
-void Robot::TeleopPeriodic() {
-  test->Set(ControlMode::Position, 70);
+void Robot::TeleopInit() { 
+  test->Set(ControlMode::Position, 700);
 }
+
+void Robot::TeleopPeriodic() {}
 
 void Robot::TestPeriodic() {}
 
