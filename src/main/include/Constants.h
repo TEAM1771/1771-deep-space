@@ -1,21 +1,21 @@
 #pragma once
 
 namespace LTRM {
-    constexpr int A = 0;
-    constexpr int B = 0;
+    int constexpr A = 0;
+    int constexpr B = 0;
 }
 
 namespace RTRM {
-    constexpr int A = 0;
-    constexpr int B = 0;
+    int constexpr A = 0;
+    int constexpr B = 0;
 }
 
 namespace ELVTR {
-    constexpr int MTR = 0;
+    int constexpr MTR = 0;
     namespace POS {
-        constexpr int DEFAULT = 0;
-        constexpr int LOW = 0;
-        constexpr int MID = 0;
-        constexpr int HIGH = 0;
+        int constexpr DEFAULT = 0;
+        int constexpr LOW = 0;
+        int constexpr MID = 0;
+        int constexpr HIGH = 0;
     }
 }
