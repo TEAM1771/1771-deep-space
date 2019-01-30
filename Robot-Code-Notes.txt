@@ -7,7 +7,7 @@ Code Shit:
 ==Jacks==
  - 3 jacks
  - 3 encoders . one per jack
- - 3 talons . one per jack and one to drive once back jack is down
+ - 4 talons . one per jack and one to drive once back jack is down
  - 3 limit switches . one per jack for zeroing => adaptable in case limit switches fall off
  - Starts not held, code should pull them slightly up till limit switch htis
  - Add test mode for holding jack
@@ -25,7 +25,7 @@ Code Shit:
  - PID required for elevator lest we destroy the entire elevator
  - Properly tune PID
  - 6 set points for elevator: MAKE EASY TO ADD => 1 for each hatch height and port height
- - Look into PID differences for up and down elevator due to gravity
+ - Look into PID differences for up and down elevator due to gravity - fixed by I and D maybe?
 
 ==Cragge==
  - 2 talons
