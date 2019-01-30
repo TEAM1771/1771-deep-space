@@ -1,0 +1,42 @@
+Code Shit:
+==Drive Base==
+ - Four Talons . two per side
+ - Two encoders . one per side
+ - Automatic shifting for ball shifters
+
+==Jacks==
+ - 3 jacks
+ - 3 encoders . one per jack
+ - 3 talons . one per jack and one to drive once back jack is down
+ - 3 limit switches . one per jack for zeroing => adaptable in case limit switches fall off
+ - Starts not held, code should pull them slightly up till limit switch htis
+ - Add test mode for holding jack
+ - "Jack Mode. Enagage Jacking"
+ - Need to worry about speed differences in Drive once on the platform and jack wheels . possibly use current draw to see if there's a load on jack wheels. This needs a lot of thought, good luck lol
+- Proximity sensor facing down to see height . ultrasonic or laser
+- Prevent driver fuck ups once jacks are down if higher than a foot
+- Possible cool thing: if driver is holding forward, acceleration for rear jack won't break traction <- may or may not be necessary
+- Try to automate
+
+==Elevator==
+ - 1 talon
+ - 1 encoder
+ - will start in lowest possible position
+ - PID required for elevator lest we destroy the entire elevator
+ - Properly tune PID
+ - 6 set points for elevator: MAKE EASY TO ADD => 1 for each hatch height and port height
+ - Look into PID differences for up and down elevator due to gravity
+
+==Cragge==
+ - 2 talons
+ - 2 enc . one per motor
+ - encoders CANNOT differ under any circumstance EVER
+ - try to do PID
+ - 2/3 set points => 1 straight forward, 1 ball shoot forward, (1 tilted)
+
+==Intake==
+ - Demogorgon is double-acting solenoid
+ - Demogorgon default closed
+ - 1 talon for intake roller
+
+
