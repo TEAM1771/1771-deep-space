@@ -2,12 +2,12 @@
 
 DriveTrain::DriveTrain() : 
     ltrm({
-        {LTRM::A, Direction::Reverse}, 
-        {LTRM::B, Direction::Reverse}
+        {LTRANS::A, Direction::Reverse}, 
+        {LTRANS::B, Direction::Reverse}
     }),
     rtrm({
-        {RTRM::A, Direction::Forward},
-        {RTRM::B, Direction::Forward}
+        {RTRANS::A, Direction::Forward},
+        {RTRANS::B, Direction::Forward}
     }) { }
 
 void DriveTrain::tank(double lrate, double rrate) {
