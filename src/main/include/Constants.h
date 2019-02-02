@@ -1,21 +1,43 @@
 #pragma once
 
-namespace LTRM {
-    int constexpr A = 0;
-    int constexpr B = 0;
+namespace LTRANS {
+    constexpr int A = 0;
+    constexpr int B = 0;
 }
 
-namespace RTRM {
-    int constexpr A = 0;
-    int constexpr B = 0;
+namespace RTRANS {
+    constexpr int A = 0;
+    constexpr int B = 0;
 }
 
 namespace ELVTR {
-    int constexpr MTR = 0;
+    constexpr int MTR = 0;
     namespace POS {
-        int constexpr DEFAULT = 0;
-        int constexpr LOW = 0;
-        int constexpr MID = 0;
-        int constexpr HIGH = 0;
+        constexpr int DEFAULT = 0;
+        constexpr int LOW = 0;
+        constexpr int MID = 0;
+        constexpr int HIGH = 0;
     }
+}
+
+namespace JOY {
+    namespace LEFT {
+        constexpr int PORT = 0;
+    }
+
+    namespace RIGHT {
+        constexpr int PORT = 0;
+    }
+
+    namespace OTHER {
+        constexpr int PORT = 0;
+        constexpr int DEMAGORGON = 0;
+        constexpr int ROLLERS = 0;
+    }
+}
+
+namespace INTAKE {
+    constexpr int ROLLERS = 0;
+    constexpr int DEMAGORGON = 0;
+    constexpr bool DEMAGORGON_DEFAULT = false;
 }
