@@ -11,6 +11,10 @@
 
 #include <frc/TimedRobot.h>
 #include <frc/smartdashboard/SendableChooser.h>
+#include <frc/Joystick.h>
+
+#include <DriveTrain.h>
+#include <Intake.h>
 
 class Robot : public frc::TimedRobot {
  public:
@@ -27,4 +31,17 @@ class Robot : public frc::TimedRobot {
   const std::string kAutoNameDefault = "Default";
   const std::string kAutoNameCustom = "My Auto";
   std::string m_autoSelected;
+
+  DriveTrain driveTrain{};
+  Intake intake{};
+  frc::Joystick left{JOY::LEFT::PORT}, right{JOY::RIGHT::PORT}, other{JOY::OTHER::PORT};
+
+
+
+  // don't laugh
+  bool jackOff = false;
+
+  void StandardDrive();
+  void JackOffDrive(); // DONT LAUGH
+
 };

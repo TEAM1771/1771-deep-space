@@ -61,7 +61,25 @@ void Robot::AutonomousPeriodic() {
 
 void Robot::TeleopInit() {}
 
-void Robot::TeleopPeriodic() {}
+void Robot::StandardDrive() {
+  driveTrain.tank(left.GetY(), right.GetY());
+  if(other.GetRawButton(JOY::OTHER::DEMAGORGON))
+    intake.demago(!INTAKE::DEMAGORGON_DEFAULT);
+  else
+    intake.demago(INTAKE::DEMAGORGON_DEFAULT);
+  
+}
+
+void Robot::JackOffDrive() {
+
+}
+
+void Robot::TeleopPeriodic() {
+  if(!jackOff)
+    StandardDrive();
+  else
+    JackOffDrive();
+}
 
 void Robot::TestPeriodic() {}
 
