@@ -12,12 +12,17 @@ namespace RTRANS {
 
 namespace ELVTR {
     constexpr int MTR = 0;
-    namespace POS {
-        constexpr int DEFAULT = 0;
-        constexpr int LOW = 0;
-        constexpr int MID = 0;
-        constexpr int HIGH = 0;
-    }
+
+    constexpr int P = 0;
+    constexpr int I = 0;
+    constexpr int D = 0;
+    
+    enum POSITION {
+        DEFAULT = 0,
+        LOW = 0,
+        MID = 0,
+        HIGH = 0,
+    };
 }
 
 namespace JOY {
