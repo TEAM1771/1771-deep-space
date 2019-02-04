@@ -1,13 +1,17 @@
 #pragma once
 
-namespace LTRANS {
-    constexpr int A = 0;
-    constexpr int B = 0;
-}
+namespace DRIVETRAIN {
+    namespace LTRANS {
+        constexpr int A = 0;
+        constexpr int B = 0;
+    }
 
-namespace RTRANS {
-    constexpr int A = 0;
-    constexpr int B = 0;
+    namespace RTRANS {
+        constexpr int A = 0;
+        constexpr int B = 0;
+    }
+
+    constexpr int SOLENOID = 0;
 }
 
 namespace ELVTR {
@@ -16,7 +20,7 @@ namespace ELVTR {
     constexpr int P = 0;
     constexpr int I = 0;
     constexpr int D = 0;
-    
+
     enum POSITION {
         DEFAULT = 0,
         LOW = 0,
