@@ -2,14 +2,14 @@
 
 DriveTrain::DriveTrain() : 
     ltrm({
-        {DRIVETRAIN::LTRANS::A, Direction::Reverse}, 
-        {DRIVETRAIN::LTRANS::B, Direction::Reverse}
+        {DRIVETRAIN::LTRANS::MTRA, Direction::Reverse}, 
+        {DRIVETRAIN::LTRANS::MTRB, Direction::Reverse}
     }),
     rtrm({
-        {DRIVETRAIN::RTRANS::A, Direction::Forward},
-        {DRIVETRAIN::RTRANS::B, Direction::Forward}
+        {DRIVETRAIN::RTRANS::MTRA, Direction::Forward},
+        {DRIVETRAIN::RTRANS::MTRB, Direction::Forward}
     }),
-    shifter(DRIVETRAIN::SOLENOID) { }
+    shifter(DRIVETRAIN::SOLENOID_PORT) { }
 
 void DriveTrain::tank(double lrate, double rrate) {
     ltrm->Set(ControlMode::PercentOutput, lrate);

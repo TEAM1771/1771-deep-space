@@ -64,9 +64,9 @@ void Robot::TeleopInit() {}
 void Robot::StandardDrive() {
   driveTrain.tank(left.GetY(), right.GetY());
   if(other.GetRawButton(JOY::OTHER::DEMAGORGON))
-    intake.demago(!INTAKE::DEMAGORGON_DEFAULT);
+    intake.demago(!INTAKE::DEMAGORGON_DEFAULT_STATE);
   else
-    intake.demago(INTAKE::DEMAGORGON_DEFAULT);
+    intake.demago(INTAKE::DEMAGORGON_DEFAULT_STATE);
   
 }
 

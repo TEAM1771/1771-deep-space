@@ -2,16 +2,16 @@
 
 namespace DRIVETRAIN {
     namespace LTRANS {
-        constexpr int A = 0;
-        constexpr int B = 0;
+        constexpr int MTRA = 0;
+        constexpr int MTRB = 0;
     }
 
     namespace RTRANS {
-        constexpr int A = 0;
-        constexpr int B = 0;
+        constexpr int MTRA = 0;
+        constexpr int MTRB = 0;
     }
 
-    constexpr int SOLENOID = 0;
+    constexpr int SOLENOID_PORT = 0;
 }
 
 namespace ELVTR {
@@ -46,7 +46,7 @@ namespace JOY {
 }
 
 namespace INTAKE {
-    constexpr int ROLLERS = 0;
-    constexpr int DEMAGORGON = 0;
-    constexpr bool DEMAGORGON_DEFAULT = false;
+    constexpr int ROLLERS_PORT = 0;
+    constexpr int DEMAGORGON_PORT = 0;
+    constexpr bool DEMAGORGON_DEFAULT_STATE = false;
 }
