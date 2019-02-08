@@ -1,16 +1,6 @@
 #include <DriveTrain.h>
 
-DriveTrain::DriveTrain() : 
-    ltrm({
-        {DRIVETRAIN::LTRANS::MTRA, Direction::Reverse}, 
-        {DRIVETRAIN::LTRANS::MTRB, Direction::Reverse}
-    }),
-    rtrm({
-        {DRIVETRAIN::RTRANS::MTRA, Direction::Forward},
-        {DRIVETRAIN::RTRANS::MTRB, Direction::Forward}
-    }),
-    shifter(DRIVETRAIN::SOLENOID::PORT) {
-
+DriveTrain::DriveTrain(){
     shifter.Set(DRIVETRAIN::SOLENOID::DEFAULT);
 }
 

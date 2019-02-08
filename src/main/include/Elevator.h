@@ -9,10 +9,9 @@ class Elevator {
 public:
 
     Elevator();
-    
     void setPosition(ELVTR::POSITION pos);
 
 private:
-    WPI_TalonSRX elevatorMotor;
+    WPI_TalonSRX elevatorMotor{ELVTR::MTR};
     int targetPos = ELVTR::POSITION::DEFAULT;
 };

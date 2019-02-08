@@ -1,6 +1,6 @@
 #include <Intake.h>
 
-Intake::Intake() : roller(INTAKE::ROLLERS_PORT), demagorgon(INTAKE::DEMAGORGON_PORT) { }
+Intake::Intake(){ }
 
 void Intake::set(double rate) {
     roller.Set(ControlMode::PercentOutput, rate);
