@@ -39,9 +39,10 @@ class Robot : public frc::TimedRobot {
 
 
   // don't laugh
-  bool jackOff = false;
+  bool jackOff = false; // lol
 
   void StandardDrive();
   void JackOffDrive(); // DONT LAUGH
+                        // LOL
 
 };
