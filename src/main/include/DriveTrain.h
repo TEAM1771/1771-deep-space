@@ -15,4 +15,5 @@ private:
     Transmission<WPI_TalonSRX> ltrm, rtrm;
     frc::Solenoid shifter;
 
+    bool shift_status = DRIVETRAIN::SOLENOID::DEFAULT;
 };

@@ -11,7 +11,17 @@ namespace DRIVETRAIN {
         constexpr int MTRB = 0;
     }
 
-    constexpr int SOLENOID_PORT = 0;
+
+    namespace SOLENOID{
+        constexpr int PORT = 0;
+
+        constexpr bool SHIFT_UP = true;
+        constexpr bool SHIFT_DOWN = !SOLENOID_SHIFT_UP;
+        constexpr bool DEFAULT = false;
+
+        constexpr int SHIFT_UP_SPEED = 2900;
+        constexpr int SHIFT_DOWN_SPEED = 2200;
+    }
 }
 
 namespace ELVTR {
