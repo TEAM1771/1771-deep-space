@@ -22,7 +22,7 @@ void DriveTrain::tank(double lrate, double rrate) {
     if(avgVelocity >= DRIVETRAIN::SOLENOID::SHIFT_UP_SPEED && shift_status == DRIVETRAIN::SOLENOID::SHIFT_DOWN)
         shift(DRIVETRAIN::SOLENOID::SHIFT_UP);
     else if(avgVelocity <= DRIVETRAIN::SOLENOID::SHIFT_DOWN_SPEED && shift_status == DRIVETRAIN::SOLENOID::SHIFT_UP)
-        shift(DRIVETRAIN::SOLENOID::SHIFT_DOWN)
+        shift(DRIVETRAIN::SOLENOID::SHIFT_DOWN);
 }
 
 void DriveTrain::shift(bool ornottoshift){
