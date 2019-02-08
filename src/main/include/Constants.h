@@ -16,7 +16,7 @@ namespace DRIVETRAIN {
         constexpr int PORT = 0;
 
         constexpr bool SHIFT_UP = true;
-        constexpr bool SHIFT_DOWN = !SOLENOID_SHIFT_UP;
+        constexpr bool SHIFT_DOWN = !SHIFT_UP;
         constexpr bool DEFAULT = false;
 
         constexpr int SHIFT_UP_SPEED = 2900;
