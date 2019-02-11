@@ -1,6 +1,8 @@
 #include <Intake.h>
 
-Intake::Intake(){ }
+Intake::Intake(){ 
+    demago(INTAKE::DEMAGORGON::DEFAULT_STATE);
+}
 
 void Intake::set(double rate) {
     roller.Set(ControlMode::PercentOutput, rate);
