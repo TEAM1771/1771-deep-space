@@ -2,13 +2,13 @@
 
 namespace DRIVETRAIN {
     namespace LTRANS {
-        constexpr int MTRA = 0;
-        constexpr int MTRB = 0;
+        constexpr int MTRA = 1;
+        constexpr int MTRB = 2;
     }
 
     namespace RTRANS {
-        constexpr int MTRA = 0;
-        constexpr int MTRB = 0;
+        constexpr int MTRA = 3;
+        constexpr int MTRB = 4;
     }
 
 
@@ -17,7 +17,7 @@ namespace DRIVETRAIN {
 
         constexpr bool SHIFT_UP = true;
         constexpr bool SHIFT_DOWN = !SHIFT_UP;
-        constexpr bool DEFAULT = false;
+        constexpr bool DEFAULT = SHIFT_DOWN;
 
         constexpr int SHIFT_UP_SPEED = 2900;
         constexpr int SHIFT_DOWN_SPEED = 2200;
@@ -56,7 +56,16 @@ namespace JOY {
 }
 
 namespace INTAKE {
-    constexpr int ROLLERS_PORT = 0;
-    constexpr int DEMAGORGON_PORT = 0;
-    constexpr bool DEMAGORGON_DEFAULT_STATE = false;
+    namespace ROLLERS {
+        constexpr int MTR = 0;
+        constexpr double IN_SPEED = 0;
+        constexpr double OUT_SPEED = 0;
+    }
+
+    namespace DEMAGORGON {
+        constexpr int PORT = 0;
+        constexpr bool IN = true;
+        constexpr bool OUT = !IN;
+        constexpr bool DEFAULT_STATE = IN;
+    }
 }

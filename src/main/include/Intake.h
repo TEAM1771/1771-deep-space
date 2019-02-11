@@ -13,6 +13,6 @@ public:
     void demago(bool rgon);
 
 private:
-    WPI_TalonSRX roller{INTAKE::ROLLERS_PORT};
-    frc::Solenoid demagorgon{INTAKE::DEMAGORGON_PORT};
+    WPI_TalonSRX roller{INTAKE::ROLLERS::MTR};
+    frc::Solenoid demagorgon{INTAKE::DEMAGORGON::PORT};
 };
