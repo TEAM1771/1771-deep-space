@@ -13,12 +13,12 @@ public:
     void shift(bool toshift);
 private:
     Transmission<WPI_TalonSRX> ltrm{{
-        {DRIVETRAIN::LTRANS::MTRA, Direction::Reverse}, 
-        {DRIVETRAIN::LTRANS::MTRB, Direction::Reverse}
+        {DRIVETRAIN::LTRANS::MTRA, Direction::Forward}, 
+        {DRIVETRAIN::LTRANS::MTRB, Direction::Forward}
     }}, 
     rtrm{{
-        {DRIVETRAIN::RTRANS::MTRA, Direction::Forward},
-        {DRIVETRAIN::RTRANS::MTRB, Direction::Forward}
+        {DRIVETRAIN::RTRANS::MTRA, Direction::Reverse},
+        {DRIVETRAIN::RTRANS::MTRB, Direction::Reverse}
     }};
 
     frc::Solenoid shifter{DRIVETRAIN::SOLENOID::PORT};
