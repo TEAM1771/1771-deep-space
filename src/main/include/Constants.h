@@ -2,13 +2,13 @@
 
 namespace DRIVETRAIN {
     namespace LTRANS {
-        constexpr int MTRA = 1;
-        constexpr int MTRB = 2;
+        constexpr int MTRA = 5;
+        constexpr int MTRB = 1;
     }
 
     namespace RTRANS {
         constexpr int MTRA = 3;
-        constexpr int MTRB = 4;
+        constexpr int MTRB = 10;
     }
 
 
@@ -45,7 +45,7 @@ namespace JOY {
     }
 
     namespace RIGHT {
-        constexpr int PORT = 0;
+        constexpr int PORT = 1;
     }
 
     namespace OTHER {
