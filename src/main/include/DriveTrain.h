@@ -1,5 +1,7 @@
 #pragma once
 
+#include <math.h>
+
 #include <ctre/Phoenix.h>
 #include <frc/Solenoid.h>
 
@@ -11,6 +13,10 @@ public:
     DriveTrain();
     void tank(double lrate, double rrate);
     void shift(bool toshift);
+    void shift();
+
+    void init();
+
 private:
     Transmission<WPI_TalonSRX> ltrm{{
         {DRIVETRAIN::LTRANS::MTRA, Direction::Forward}, 
