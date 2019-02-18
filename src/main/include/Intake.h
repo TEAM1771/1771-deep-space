@@ -9,12 +9,12 @@ class Intake {
 public:
     WPI_TalonSRX rollers { INTAKE::ROLLERS::MTR };
 
-    struct Demagorgon
+    struct Demogorgon
     {
         public:
-        Demagorgon();
+        Demogorgon();
         void Set(bool rgon);
         private:
-        frc::Solenoid demagorgon_obj { INTAKE::DEMAGORGON::PORT };
-    } demagorgon;
+        frc::Solenoid demogorgon_obj { INTAKE::DEMOGORGON::PORT };
+    } demogorgon;
 };

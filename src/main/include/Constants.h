@@ -50,7 +50,7 @@ namespace JOY {
 
     namespace OTHER {
         constexpr int PORT = 2;
-        constexpr int DEMAGORGON = 0;
+        constexpr int DEMOGORGON = 0;
         constexpr int ROLLERS = 0;
         constexpr int JACK_OFF_A = 3;
         constexpr int JACK_OFF_B = 4;
@@ -66,7 +66,7 @@ namespace INTAKE {
         constexpr double OUT_SPEED = 0;
     }
 
-    namespace DEMAGORGON {
+    namespace DEMOGORGON {
         constexpr int PORT = 0;
         constexpr bool IN = true;
         constexpr bool OUT = !IN;

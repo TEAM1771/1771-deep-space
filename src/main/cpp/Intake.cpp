@@ -1,9 +1,9 @@
 #include <Intake.h>
 
-Intake::Demagorgon::Demagorgon() {
-    demagorgon_obj.Set(INTAKE::DEMAGORGON::DEFAULT_STATE);
+Intake::Demogorgon::Demogorgon() {
+    demogorgon_obj.Set(INTAKE::DEMOGORGON::DEFAULT_STATE);
 }
 
-void Intake::Demagorgon::Set(bool rgon) {
-    demagorgon_obj.Set(rgon);
+void Intake::Demogorgon::Set(bool rgon) {
+    demogorgon_obj.Set(rgon);
 }
