@@ -11,17 +11,17 @@ void Jacks::init() {
     front_right.SetSensorPhase(true);
     back.SetSensorPhase(true);
 
-    front_left.Config_kP(0, JACKS::P, 0);
-    front_left.Config_kI(0, JACKS::I, 0);
-    front_left.Config_kD(0, JACKS::D, 0);
+    front_left.Config_kP(0, JACKS::P, 30);
+    front_left.Config_kI(0, JACKS::I, 30);
+    front_left.Config_kD(0, JACKS::D, 30);
 
-    front_right.Config_kP(0, JACKS::P, 0);
-    front_right.Config_kI(0, JACKS::I, 0);
-    front_right.Config_kD(0, JACKS::D, 0);
+    front_right.Config_kP(0, JACKS::P, 30);
+    front_right.Config_kI(0, JACKS::I, 30);
+    front_right.Config_kD(0, JACKS::D, 30);
 
-    back.Config_kP(0, JACKS::P, 0);
-    back.Config_kI(0, JACKS::I, 0);
-    back.Config_kD(0, JACKS::D, 0);
+    back.Config_kP(0, JACKS::P, 30);
+    back.Config_kI(0, JACKS::I, 30);
+    back.Config_kD(0, JACKS::D, 30);
 }
 
 void Jacks::raise() {
