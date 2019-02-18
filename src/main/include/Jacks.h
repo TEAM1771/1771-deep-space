@@ -11,7 +11,10 @@ public:
     void init();
 
     void raise();
+    void raiseFront();
+
     void lower();
+    
     void drive(double rate);
 
 private:

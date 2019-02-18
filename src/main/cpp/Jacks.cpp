@@ -30,6 +30,13 @@ void Jacks::raise() {
     back.Set(ControlMode::PercentOutput, JACKS::POSITION::RAISED);
 }
 
+void Jacks::raiseFront(){
+    front_left.Set(ControlMode::PercentOutput, JACKS::POSITION::RAISED);
+    front_right.Set(ControlMode::PercentOutput, JACKS::POSITION::RAISED);
+    // No setting for back. This should assure that even if this is enabled 
+    // while the bot has jacks raised it won't lower the back and tip us over.
+}
+
 void Jacks::lower() {
     front_left.Set(ControlMode::PercentOutput, JACKS::POSITION::LOWERED);
     front_right.Set(ControlMode::PercentOutput, JACKS::POSITION::LOWERED);
