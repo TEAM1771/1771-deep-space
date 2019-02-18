@@ -67,10 +67,7 @@ void Robot::StandardDrive() {
   driveTrain.tank(left.GetY(), right.GetY());
 
   // Demagorgon
-  if(other.GetRawButton(JOY::OTHER::DEMAGORGON))
-    intake.demago(!INTAKE::DEMAGORGON::DEFAULT_STATE);
-  else
-    intake.demago(INTAKE::DEMAGORGON::DEFAULT_STATE);
+  intake.demagorgan.Set(other.GetRawButton(JOY::OTHER::DEMAGORGON));
 
   // Jack off
   if(other.GetRawButtonPressed(JOY::OTHER::JACK_OFF_A) && other.GetRawButtonPressed(JOY::OTHER::JACK_OFF_B)){

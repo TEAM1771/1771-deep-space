@@ -7,12 +7,13 @@
 
 class Intake {
 public:
-    Intake();
+    WPI_TalonSRX rollers { INTAKE::ROLLERS::MTR };
 
-    void set(double rate);
-    void demago(bool rgon);
-
-private:
-    WPI_TalonSRX roller{INTAKE::ROLLERS::MTR};
-    frc::Solenoid demagorgon{INTAKE::DEMAGORGON::PORT};
+    struct Demagorgan
+    {
+        Demagorgan();
+        void Set(bool rgon);
+    private:
+        frc::Solenoid demagorgon_obj { INTAKE::DEMAGORGON::PORT };
+    } demagorgan;
 };
