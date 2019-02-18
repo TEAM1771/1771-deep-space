@@ -5,5 +5,5 @@ Intake::Demogorgon::Demogorgon() {
 }
 
 void Intake::Demogorgon::Set(bool rgon) {
-    demogorgon_obj.Set(rgon);
+    demogorgon_obj.Set(rgon != INTAKE::DEMOGORGON::DEFAULT_STATE);
 }
