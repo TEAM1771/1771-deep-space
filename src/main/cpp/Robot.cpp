@@ -15,6 +15,8 @@ void Robot::RobotInit() {
   m_chooser.SetDefaultOption(kAutoNameDefault, kAutoNameDefault);
   m_chooser.AddOption(kAutoNameCustom, kAutoNameCustom);
   frc::SmartDashboard::PutData("Auto Modes", &m_chooser);
+
+  driveTrain.init();
 }
 
 /**
@@ -60,18 +62,31 @@ void Robot::AutonomousPeriodic() {
 }
 
 void Robot::TeleopInit() {}
-
 void Robot::StandardDrive() {
+  // Standard Tank Drive
   driveTrain.tank(left.GetY(), right.GetY());
+
+  // Demagorgon
   if(other.GetRawButton(JOY::OTHER::DEMAGORGON))
     intake.demago(!INTAKE::DEMAGORGON::DEFAULT_STATE);
   else
     intake.demago(INTAKE::DEMAGORGON::DEFAULT_STATE);
-  
+
+  // Jack off
+  if(other.GetRawButtonPressed(JOY::OTHER::JACK_OFF_A) && other.GetRawButtonPressed(JOY::OTHER::JACK_OFF_B)){
+    jackOff = true;
+    jacks.lower();
+  }
+
 }
 
 void Robot::JackOffDrive() {
+  jacks.drive(other.GetY());
 
+  if(other.GetRawButtonPressed(JOY::OTHER::JACK_OFF_A) && other.GetRawButtonPressed(JOY::OTHER::JACK_OFF_B)){
+    jackOff = false;
+    jacks.raise();
+  }
 }
 
 void Robot::TeleopPeriodic() {
