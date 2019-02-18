@@ -54,6 +54,8 @@ namespace JOY {
         constexpr int ROLLERS = 0;
         constexpr int JACK_OFF_A = 3;
         constexpr int JACK_OFF_B = 4;
+        constexpr int JACK_OFF_STAGE2_A = 5;
+        constexpr int JACK_OFF_STAGE2_B = 6;
     }
 }
 
