@@ -25,22 +25,22 @@ void Jacks::init() {
 }
 
 void Jacks::raise() {
-    front_left.Set(ControlMode::PercentOutput, JACKS::POSITION::RAISED);
-    front_right.Set(ControlMode::PercentOutput, JACKS::POSITION::RAISED);
-    back.Set(ControlMode::PercentOutput, JACKS::POSITION::RAISED);
+    front_left.Set(ControlMode::Position, JACKS::POSITION::RAISED);
+    front_right.Set(ControlMode::Position, JACKS::POSITION::RAISED);
+    back.Set(ControlMode::Position, JACKS::POSITION::RAISED);
 }
 
 void Jacks::raiseFront(){
-    front_left.Set(ControlMode::PercentOutput, JACKS::POSITION::RAISED);
-    front_right.Set(ControlMode::PercentOutput, JACKS::POSITION::RAISED);
+    front_left.Set(ControlMode::Position, JACKS::POSITION::RAISED);
+    front_right.Set(ControlMode::Position, JACKS::POSITION::RAISED);
     // No setting for back. This should assure that even if this is enabled 
     // while the bot has jacks raised it won't lower the back and tip us over.
 }
 
 void Jacks::lower() {
-    front_left.Set(ControlMode::PercentOutput, JACKS::POSITION::LOWERED);
-    front_right.Set(ControlMode::PercentOutput, JACKS::POSITION::LOWERED);
-    back.Set(ControlMode::PercentOutput, JACKS::POSITION::LOWERED);
+    front_left.Set(ControlMode::Position, JACKS::POSITION::LOWERED);
+    front_right.Set(ControlMode::Position, JACKS::POSITION::LOWERED);
+    back.Set(ControlMode::Position, JACKS::POSITION::LOWERED);
 }
 
 void Jacks::drive(double rate) {
