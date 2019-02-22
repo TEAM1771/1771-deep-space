@@ -21,11 +21,11 @@ private:
     Transmission<WPI_TalonSRX> ltrm{{
         {DRIVETRAIN::LTRANS::MTRA, Direction::Forward}, 
         {DRIVETRAIN::LTRANS::MTRB, Direction::Forward}
-    }}, 
+    }, {DRIVETRAIN::LTRANS::ENCA, DRIVETRAIN::LTRANS::ENCB} }, 
     rtrm{{
         {DRIVETRAIN::RTRANS::MTRA, Direction::Reverse},
         {DRIVETRAIN::RTRANS::MTRB, Direction::Reverse}
-    }};
+    }, {DRIVETRAIN::RTRANS::ENCA, DRIVETRAIN::RTRANS::ENCB} };
 
     frc::Solenoid shifter{DRIVETRAIN::SOLENOID::PORT};
 

@@ -3,6 +3,8 @@
 #include <initializer_list>
 #include <string>
 
+#include <frc/Encoder.h>
+
 enum Direction {
 	Forward,
 	Reverse
@@ -12,8 +14,9 @@ template <typename Motor_Controller>
 class Transmission {
 public:
 
-	Transmission(std::initializer_list<std::pair<int, Direction>> motor_info) : 
-			leader( (motor_info.begin())->first ) {
+	Transmission(std::initializer_list<std::pair<int, Direction>> motor_info, std::pair<int,int> encPort) : 
+			leader( (motor_info.begin())->first ),
+			enc( encPort.first, encPort.second ) {
 		// Initialize leader motor and create a const variable to store the leader motor's info
 		auto const leader_info = *(motor_info.begin());
 		leader.SetInverted(leader_info.second);
@@ -43,4 +46,5 @@ public:
 private:
 	Motor_Controller leader;
 	std::basic_string<Motor_Controller*> followers;
+	frc::Encoder enc;
 };
