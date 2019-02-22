@@ -4,11 +4,17 @@ namespace DRIVETRAIN {
     namespace LTRANS {
         constexpr int MTRA = 1;
         constexpr int MTRB = 5;
+
+        constexpr int ENCA = 0;
+        constexpr int ENCB = 1;
     }
 
     namespace RTRANS {
         constexpr int MTRA = 10;
         constexpr int MTRB = 3;
+
+        constexpr int ENCA = 2;
+        constexpr int ENCB = 3;
     }
 
 
