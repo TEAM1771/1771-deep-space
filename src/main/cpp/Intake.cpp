@@ -1,6 +1,6 @@
 #include <Intake.h>
 
-Intake::Demogorgon::Demogorgon() {
+Intake::Demogorgon::Demogorgon() {  
     demogorgon_obj.Set(INTAKE::DEMOGORGON::DEFAULT_STATE);
 }
 
