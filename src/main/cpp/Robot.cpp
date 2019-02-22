@@ -17,6 +17,7 @@ void Robot::RobotInit() {
   frc::SmartDashboard::PutData("Auto Modes", &m_chooser);
 
   driveTrain.init();
+  jacks.init();
 }
 
 /**
@@ -28,6 +29,7 @@ void Robot::RobotInit() {
  * LiveWindow and SmartDashboard integrated updating.
  */
 void Robot::RobotPeriodic() {}
+
 
 /**
  * This autonomous (along with the chooser code above) shows how to select
