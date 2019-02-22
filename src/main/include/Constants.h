@@ -75,15 +75,28 @@ namespace INTAKE {
 }
 
 namespace JACKS {
-    constexpr int FRONT_LEFT_PORT = 0;
-    constexpr int FRONT_RIGHT_PORT = 0;
-    constexpr int BACK_PORT = 0;
+    namespace FRONT_LEFT {
+        constexpr int PORT = 0;
+        constexpr double P = 0.0;
+        constexpr double I = 0.0;
+        constexpr double D = 0.0;
+    }
+
+    namespace FRONT_RIGHT {
+        constexpr int PORT = 0;
+        constexpr double P = 0.0;
+        constexpr double I = 0.0;
+        constexpr double D = 0.0;
+    }
+
+    namespace BACK {
+        constexpr int PORT = 0;
+        constexpr double P = 0.0;
+        constexpr double I = 0.0;
+        constexpr double D = 0.0;
+    }
+
     constexpr int DRIVER_PORT = 0;
-
-    constexpr double P = 0.0;
-    constexpr double I = 0.0;
-    constexpr double D = 0.0;
-
 
     enum POSITION {
         RAISED = 0,
