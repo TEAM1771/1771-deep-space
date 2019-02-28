@@ -4,12 +4,15 @@
 
 #include <Constants.h>
 
-
 class Elevator {
 public:
 
     Elevator();
     void setPosition(ELVTR::POSITION pos);
+    int tempGetPos();
+    double tempGetVel();
+
+    void set(double rate);
 
 private:
     WPI_TalonSRX elevatorMotor{ELVTR::MTR};
