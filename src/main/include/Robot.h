@@ -16,6 +16,7 @@
 #include <DriveTrain.h>
 #include <Intake.h>
 #include <Jacks.h>
+#include <Elevator.h>
 
 class Robot : public frc::TimedRobot {
 public:
@@ -36,6 +37,7 @@ private:
     DriveTrain driveTrain{};
     Intake intake{};
     Jacks jacks{};
+    Elevator elevator{};
     frc::Joystick left{JOY::LEFT::PORT}, right{JOY::RIGHT::PORT}, other{JOY::OTHER::PORT};
 
 

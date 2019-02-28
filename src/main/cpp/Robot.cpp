@@ -64,6 +64,7 @@ void Robot::AutonomousPeriodic() {
 }
 
 void Robot::TeleopInit() {}
+
 void Robot::StandardDrive() {
   // Standard Tank Drive
   driveTrain.tank(left.GetY(), right.GetY());
@@ -76,6 +77,16 @@ void Robot::StandardDrive() {
     jackOff = true;
     jacks.lower();
   }
+
+  std::cout << "Elevator Pos: " << elevator.tempGetPos() << "\tElevator Vel: " << elevator.tempGetVel() << "\n";
+  //elevator.set(other.GetY());
+  if(other.GetRawButtonPressed(8))
+    elevator.setPosition(ELVTR::POSITION::HIGH);
+  else if(other.GetRawButtonPressed(10))
+    elevator.setPosition(ELVTR::POSITION::MID);
+  else if(other.GetRawButtonPressed(12))
+    elevator.setPosition(ELVTR::POSITION::LOW);
+
 
 }
 
