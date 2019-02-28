@@ -1,8 +1,10 @@
 #pragma once
 
+constexpr int timeoutPID = 10;
+
 namespace DRIVETRAIN {
     namespace LTRANS {
-        constexpr int MTRA = 1;
+        constexpr int MTRA = 2;//1;
         constexpr int MTRB = 5;
 
         constexpr int ENCA = 0;
@@ -31,17 +33,20 @@ namespace DRIVETRAIN {
 }
 
 namespace ELVTR {
-    constexpr int MTR = 0;
+    constexpr int MTR = 1;
 
-    constexpr double P = 0;
-    constexpr double I = 0;
-    constexpr double D = 0;
+    constexpr double P = 0.4;
+    constexpr double I = 0.0;
+    constexpr double D = 20.5;
+    constexpr double F = 0.0;
+
+    constexpr double VRAMP = 0.2;
 
     enum POSITION {
         DEFAULT = 0,
-        LOW = 0,
-        MID = 0,
-        HIGH = 0,
+        LOW = 100,
+        MID = 12231,
+        HIGH = 22463,
     };
 }
 
