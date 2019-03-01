@@ -14,7 +14,6 @@ public:
         public:
         Demogorgon();
         void Set(bool rgon);
-        void SPEEDMODE();
         private:
         frc::Solenoid demogorgon_obj { INTAKE::DEMOGORGON::PORT };
     } demogorgon;
