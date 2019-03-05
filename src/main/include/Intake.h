@@ -17,4 +17,7 @@ public:
         private:
         frc::Solenoid demogorgon_obj { INTAKE::DEMOGORGON::PORT };
     } demogorgon;
+
+private:
+    WPI_TalonSRX pivot { INTAKE::PIVOT::MTR };
 };
