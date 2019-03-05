@@ -4,6 +4,8 @@
 
 #include <Constants.h>
 
+#include <iostream>
+
 class Jacks {
 public:
     Jacks();
@@ -12,9 +14,9 @@ public:
 
     void raise();
     void raiseFront();
-
     void lower();
-    
+
+    void update();    
     void drive(double rate);
 
 private:
