@@ -34,11 +34,11 @@ namespace DRIVETRAIN {
 
 namespace ELVTR {
     constexpr int MTR = 8;
-
-    constexpr double P = 0.4;
-    constexpr double I = 0.0;
-    constexpr double D = 20.5;
-    constexpr double F = 0.0;
+                              // Old Values for non-cragged elevator
+    constexpr double P = 0.0; //0.4;
+    constexpr double I = 0.0; //0.0;
+    constexpr double D = 0.0; //20.5;
+    constexpr double F = 0.0; //0.0;
 
     constexpr double VRAMP = 0.2;
 
