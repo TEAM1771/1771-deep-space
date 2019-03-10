@@ -8,6 +8,11 @@
 class Intake {
 public:
     WPI_TalonSRX rollers { INTAKE::ROLLERS::MTR };
+    Intake();
+
+    void setPosition(INTAKE::PIVOT::POSITIONS p);
+    INTAKE::PIVOT::POSITIONS getPosition();
+    void update();
 
     struct Demogorgon
     {
@@ -20,4 +25,5 @@ public:
 
 private:
     WPI_TalonSRX pivot { INTAKE::PIVOT::MTR };
+    INTAKE::PIVOT::POSITIONS curpos;
 };

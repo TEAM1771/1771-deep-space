@@ -13,15 +13,16 @@ void DriveTrain::init(){
     rtrm->SetSensorPhase(true);
 }
 
+void DriveTrain::update() {
+    std::cout << "Left Pos: " << ltrm->GetSelectedSensorPosition() << "  |  Right Pos: " << rtrm->GetSelectedSensorPosition();
+    std::cout << "  ---  Left Vel: " << ltrm->GetSelectedSensorVelocity() << "  |  Right Vel: " << rtrm->GetSelectedSensorVelocity() << "\n";
+}
+
 void DriveTrain::tank(double lrate, double rrate) {
     ltrm->Set(ControlMode::PercentOutput, lrate);
     rtrm->Set(ControlMode::PercentOutput, rrate);
 
     double const avgVelocity = (ltrm->GetSelectedSensorVelocity()+rtrm->GetSelectedSensorVelocity())/2.0;
-
-    std::cout << "Left Pos: " << ltrm->GetSelectedSensorPosition() << "  |  Right Pos: " << rtrm->GetSelectedSensorPosition();
-    std::cout << "  ---  Left Vel: " << ltrm->GetSelectedSensorVelocity() << "  |  Right Vel: " << rtrm->GetSelectedSensorVelocity() << "\n";
-
     if(shift_status == DRIVETRAIN::SOLENOID::SHIFT_DOWN && fabs(avgVelocity) >= DRIVETRAIN::SOLENOID::SHIFT_UP_SPEED)
         shift(DRIVETRAIN::SOLENOID::SHIFT_UP);
     else if(shift_status == DRIVETRAIN::SOLENOID::SHIFT_UP && fabs(avgVelocity) <= DRIVETRAIN::SOLENOID::SHIFT_DOWN_SPEED)

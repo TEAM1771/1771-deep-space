@@ -5,15 +5,15 @@ constexpr int timeoutPID = 10;
 namespace DRIVETRAIN {
     namespace LTRANS {
         constexpr int MTRA = 1;
-        constexpr int MTRB = 2;
+        constexpr int MTRB = 17;
 
         constexpr int ENCA = 0;
         constexpr int ENCB = 1;
     }
 
     namespace RTRANS {
-        constexpr int MTRA = 3;
-        constexpr int MTRB = 4;
+        constexpr int MTRA = 11;
+        constexpr int MTRB = 12;
 
         constexpr int ENCA = 2;
         constexpr int ENCB = 3;
@@ -27,15 +27,15 @@ namespace DRIVETRAIN {
         constexpr bool SHIFT_DOWN = !SHIFT_UP;
         constexpr bool DEFAULT = SHIFT_DOWN;
 
-        constexpr int SHIFT_UP_SPEED = 1300; // 2900 in 2016
-        constexpr int SHIFT_DOWN_SPEED = 900; // 2200 in 2016
+        constexpr int SHIFT_UP_SPEED = 8000; // 2900 in 2016
+        constexpr int SHIFT_DOWN_SPEED = 7999; // 2200 in 2016
     }
 }
 
 namespace ELVTR {
-    constexpr int MTR = 8;
+    constexpr int MTR = 2;  
                               // Old Values for non-cragged elevator
-    constexpr double P = 0.0; //0.4;
+    constexpr double P = 0.1; //0.4;
     constexpr double I = 0.0; //0.0;
     constexpr double D = 0.0; //20.5;
     constexpr double F = 0.0; //0.0;
@@ -44,41 +44,61 @@ namespace ELVTR {
 
     enum POSITION {
         DEFAULT = 0,
-        LOW = 100,
-        MID = 12231,
-        HIGH = 22463,
+        LOW = 150,
+        HATCH = 8000,
+        CARGO = 16000,
+        HIGH = 25600,
     };
 }
 
 namespace JOY {
     namespace LEFT {
         constexpr int PORT = 0;
+        constexpr int JACK_OFF = 1;
+        constexpr int JACK_OFF_HAB2 = 3;
+        constexpr int JACK_OFF_HAB2to3 = 4;
+        constexpr int SMALL_LIFT_BACK_JACK = 6;
     }
 
     namespace RIGHT {
         constexpr int PORT = 1;
+        constexpr int JACK_OFF = 1;
+        constexpr int JACK_OFF_HAB2 = 3;
+        constexpr int JACK_OFF_HAB2to3 = 5;
+        constexpr int SMALL_DROP_BACK_JACK = 11;
     }
 
     namespace OTHER {
         constexpr int PORT = 2;
-        constexpr int DEMOGORGON = 0;
-        constexpr int ROLLERS = 0;
+        constexpr int DEMOGORGON = 1;
+        constexpr int ROLLERS_IN = 5;
+        constexpr int ROLLERS_OUT = 6;
         
-        constexpr int JACK_OFF_A = 3;
-        constexpr int JACK_OFF_B = 4;
-
-        constexpr int JACK_OFF_STAGE2_A = 5;
-        constexpr int JACK_OFF_STAGE2_B = 6;
+        constexpr int INTAKE_HIGH = 7;
+        constexpr int INTAKE_MID = 9;
+        constexpr int INTAKE_LOW = 11;
 
         constexpr int ELVTR_POS_LOW = 12;
         constexpr int ELVTR_POS_MID = 10;
         constexpr int ELVTR_POS_HIGH = 8;
+        constexpr int ELVTR_POS_HATCH = 2;
     }
 }
 
 namespace INTAKE {
     namespace PIVOT {
-        constexpr int MTR = 11;
+        constexpr int MTR = 7;
+        enum POSITIONS {
+            LOW_POS = -2700,
+            CARRY_POS = -450,
+            HIGH_POS = 0,
+        };
+
+        constexpr double P = 1.5;
+        constexpr double I = 0.00003;
+        constexpr double D = 0.05;
+        constexpr double F = 0.0;
+
     }
 
     namespace ROLLERS {
@@ -98,7 +118,7 @@ namespace INTAKE {
 namespace JACKS {
     namespace FRONT_LEFT {
         constexpr int PORT = 4;
-        constexpr double P = 0.15;
+        constexpr double P = 0.2;
         constexpr double I = 0.0;
         constexpr double D = 0.0;
 
@@ -106,8 +126,8 @@ namespace JACKS {
     }
 
     namespace FRONT_RIGHT {
-        constexpr int PORT = 8;
-        constexpr double P = 0.15;
+        constexpr int PORT = 9;
+        constexpr double P = 0.2;
         constexpr double I = 0.0;
         constexpr double D = 0.0;
 
@@ -116,11 +136,12 @@ namespace JACKS {
 
     namespace BACK {
         constexpr int PORT = 5;
-        constexpr double P = 0.15;
+        constexpr double P = 0.2;
         constexpr double I = 0.0;
         constexpr double D = 0.0;
 
         constexpr int LIFT_HEIGHT = -1282;
+        constexpr int DROP_HEIGHT = -12*JACKS::FRONT_LEFT::LIFT_HEIGHT;
 
     }
 

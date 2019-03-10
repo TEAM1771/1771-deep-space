@@ -12,6 +12,7 @@
 #include <frc/TimedRobot.h>
 #include <frc/smartdashboard/SendableChooser.h>
 #include <frc/Joystick.h>
+#include <frc/Timer.h>
 
 #include <DriveTrain.h>
 #include <Intake.h>
@@ -27,6 +28,7 @@ public:
     void TeleopInit() override;
     void TeleopPeriodic() override;
     void TestPeriodic() override;
+    void DisabledPeriodic() override;
 
 private:
     frc::SendableChooser<std::string> m_chooser;
@@ -40,13 +42,18 @@ private:
     Elevator elevator{};
     frc::Joystick left{JOY::LEFT::PORT}, right{JOY::RIGHT::PORT}, other{JOY::OTHER::PORT};
 
+    frc::Timer timer{};
 
 
     // don't laugh
     bool jackOff = false; // lol
+    bool jackOffManual = false;
+    bool canJack = false;
+    INTAKE::PIVOT::POSITIONS pivotPos = INTAKE::PIVOT::POSITIONS::CARRY_POS;
 
     void StandardDrive();
     void JackOffDrive(); // DONT LAUGH
                         // LOL
+    void JackOffManual();
 
 };

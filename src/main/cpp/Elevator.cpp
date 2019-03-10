@@ -1,7 +1,9 @@
 #include <Elevator.h>
 
+#include <iostream>
+
 Elevator::Elevator(){
-    elevatorMotor.SetSelectedSensorPosition(0);
+   elevatorMotor.SetSelectedSensorPosition(0);
 
     elevatorMotor.SetStatusFramePeriod(StatusFrameEnhanced::Status_13_Base_PIDF0, 10, timeoutPID);
     elevatorMotor.SetStatusFramePeriod(StatusFrameEnhanced::Status_10_MotionMagic, 10, timeoutPID);
@@ -18,19 +20,15 @@ Elevator::Elevator(){
 
     elevatorMotor.SelectProfileSlot(0,0);
 
-    //elevatorMotor.ConfigClosedloopRamp(ELVTR::VRAMP, timeoutPID);
+    elevatorMotor.ConfigClosedloopRamp(ELVTR::VRAMP, timeoutPID);
 
     //elevatorMotor.ConfigMotionCruiseVelocity();
 
     elevatorMotor.SetSelectedSensorPosition(0);
 }
 
-int Elevator::tempGetPos() {
-    return elevatorMotor.GetSelectedSensorPosition();
-}
-
-double Elevator::tempGetVel() {
-    return elevatorMotor.GetSelectedSensorVelocity();
+void Elevator::update() {
+    std::cout << "elevator pos: " << elevatorMotor.GetSelectedSensorPosition() << "\n";
 }
 
 void Elevator::set(double rate) {
@@ -38,9 +36,10 @@ void Elevator::set(double rate) {
 }
 
 void Elevator::setPosition(ELVTR::POSITION pos) {
-    if(pos > ELVTR::POSITION::HIGH || pos < ELVTR::POSITION::LOW)
-        return;
+    if(pos != targetPos)
+        elevatorMotor.Set(ControlMode::Position, targetPos = pos);
+}
 
-    targetPos = pos;
-    elevatorMotor.Set(ControlMode::Position, targetPos);
+ELVTR::POSITION Elevator::getPosition() {
+    return targetPos;
 }

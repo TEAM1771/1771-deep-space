@@ -56,57 +56,158 @@ void Robot::AutonomousInit() {
 }
 
 void Robot::AutonomousPeriodic() {
-  if (m_autoSelected == kAutoNameCustom) {
-    // Custom Auto goes here
-  } else {
-    // Default Auto goes here
-  }
+  StandardDrive();
 }
 
-void Robot::TeleopInit() {}
+void Robot::DisabledPeriodic() {
+  //jacks.update();
+  //intake.update();
+  //elevator.update();
+  driveTrain.update();
+}
+
+void Robot::TeleopInit() {
+  canJack = true;
+}
 
 void Robot::StandardDrive() {
+  driveTrain.update();
+  jacks.raise();
   // Standard Tank Drive
-  driveTrain.tank(left.GetY(), right.GetY());
+  driveTrain.tank(-left.GetY(), -right.GetY());
 
   // Demogorgon
   intake.demogorgon.Set(other.GetRawButton(JOY::OTHER::DEMOGORGON));
 
   // Jack off
-  if(other.GetRawButtonPressed(JOY::OTHER::JACK_OFF_A) && other.GetRawButtonPressed(JOY::OTHER::JACK_OFF_B)){
+  if(canJack && right.GetRawButton(JOY::RIGHT::JACK_OFF) && left.GetRawButton(JOY::LEFT::JACK_OFF)){
     jackOff = true;
     jacks.lower();
+    driveTrain.tank(0.35, 0.35);
+    jacks.drive(0.4);
+
+    timer.Reset();
+    timer.Start();
+  }else if(canJack && right.GetRawButton(JOY::RIGHT::JACK_OFF_HAB2) && left.GetRawButton(JOY::LEFT::JACK_OFF_HAB2)){
+    jackOff = true;
+    jacks.lowerHAB2();
+    driveTrain.tank(0.35, 0.35);
+    jacks.drive(0.4);
+
+    timer.Reset();
+    timer.Start();
+  }else if(canJack && right.GetRawButton(JOY::RIGHT::JACK_OFF_HAB2to3) && left.GetRawButton(JOY::LEFT::JACK_OFF_HAB2to3)){
+    jackOffManual = true;
+    jacks.lowerHAB2to3();
+    driveTrain.tank(0.35, 0.35);
+    jacks.drive(0.4);
+
+    timer.Reset();
+    timer.Start();
   }
 
-  std::cout << "Elevator Pos: " << elevator.tempGetPos() << "\tElevator Vel: " << elevator.tempGetVel() << "\n";
-  //elevator.set(other.GetY());
-  if(other.GetRawButtonPressed(8))
+  bool moving = false;
+  if(other.GetRawButton(JOY::OTHER::ELVTR_POS_HIGH)){
     elevator.setPosition(ELVTR::POSITION::HIGH);
-  else if(other.GetRawButtonPressed(10))
-    elevator.setPosition(ELVTR::POSITION::MID);
-  else if(other.GetRawButtonPressed(12))
+    moving = true;
+  }else if(other.GetRawButton(JOY::OTHER::ELVTR_POS_MID)){
+    elevator.setPosition(ELVTR::POSITION::CARGO);
+    moving = true;
+  }else if(other.GetRawButton(JOY::OTHER::ELVTR_POS_LOW)){
     elevator.setPosition(ELVTR::POSITION::LOW);
+    moving = true;
+  }else if(other.GetRawButton(JOY::OTHER::ELVTR_POS_HATCH)){
+    elevator.setPosition(ELVTR::POSITION::HATCH);
+    moving = true;
+  }
 
+  if(!moving){
+    if(other.GetRawButton(JOY::OTHER::INTAKE_HIGH)){
+      intake.setPosition(INTAKE::PIVOT::HIGH_POS);
+    }else if(other.GetRawButton(JOY::OTHER::INTAKE_MID)){
+      intake.setPosition(INTAKE::PIVOT::CARRY_POS);
+    }else if(other.GetRawButton(JOY::OTHER::INTAKE_LOW)){
+      intake.setPosition(INTAKE::PIVOT::LOW_POS);
+    }
+  }else{
+    intake.setPosition(INTAKE::PIVOT::CARRY_POS);
+  }
 
+  intake.demogorgon.Set(other.GetRawButton(JOY::OTHER::DEMOGORGON));
+  //intake.update();
+  
+  if(other.GetRawButton(JOY::OTHER::ROLLERS_IN)){
+    intake.rollers.Set(ControlMode::PercentOutput, 1);
+    //intake.setPosition(INTAKE::PIVOT::POSITIONS::LOW_POS);
+  }else if(other.GetRawButton(JOY::OTHER::ROLLERS_OUT)){
+    intake.rollers.Set(ControlMode::PercentOutput, -1);
+  }else{
+    intake.rollers.Set(ControlMode::PercentOutput, 0);
+    //intake.setPosition(pivotPos);
+  }
+
+  //std::cout << "rate:" << rate << "\n";
+
+  //elevator.set(other.GetY());
+  elevator.update();
+}
+
+void Robot::JackOffManual() {
+  static double time;
+  time = timer.Get();    
+
+  constexpr double first_stage = 2;
+  constexpr double second_stage = first_stage+1.0; //5;
+
+  if(time > first_stage && time <= second_stage){
+    driveTrain.tank(0, 0);
+    jacks.drive(0);
+    jacks.raiseFront();
+  }else if(time > second_stage){
+    driveTrain.tank(-left.GetY(), -right.GetY());
+    jacks.drive((left.GetY()+right.GetY())/2.0+0.1);
+    if(left.GetRawButton(JOY::LEFT::SMALL_LIFT_BACK_JACK))
+      jacks.raiseBackSmall();
+    else if(right.GetRawButton(JOY::RIGHT::SMALL_DROP_BACK_JACK))
+      jacks.lowerBackSmall();
+  }
 }
 
 void Robot::JackOffDrive() {
-  jacks.drive(other.GetY());
+  static double time;
+  time = timer.Get();    
 
-  if(other.GetRawButtonPressed(JOY::OTHER::JACK_OFF_STAGE2_A) && other.GetRawButtonPressed(JOY::OTHER::JACK_OFF_STAGE2_B))
+  constexpr double first_stage = 2;
+  constexpr double second_stage = first_stage+2.0; //5;
+  constexpr double third_stage = second_stage+1.5; //6.5;
+  constexpr double fourth_stage = third_stage+0.5; //7.5;
+  constexpr double fifth_stage = fourth_stage+1.0; //8.5;
+
+  if(time > first_stage && time <= second_stage){
+    driveTrain.tank(0, 0);
     jacks.raiseFront();
-
-  if(other.GetRawButtonPressed(JOY::OTHER::JACK_OFF_A) && other.GetRawButtonPressed(JOY::OTHER::JACK_OFF_B)){
-    jackOff = false;
+  }else if(time > second_stage && time <= third_stage){
+    driveTrain.tank(0.25, 0.25);
+    jacks.drive(0.35);
+  }else if(time > third_stage && time <= fourth_stage){
     jacks.raise();
+    driveTrain.tank(0.25,0.25);
+    jacks.drive(0.35);
+  }else if(time > fourth_stage && time <= fifth_stage){
+    driveTrain.tank(0.25,0.25);
+    jacks.drive(0);
+  }else if(time > fifth_stage){
+    jackOff = false;
   }
 }
 
 void Robot::TeleopPeriodic() {
-  if(!jackOff)
-    StandardDrive();
-  else
+  if(jackOffManual)
+    JackOffManual();
+  else if(jackOff)
     JackOffDrive();
+  else
+    StandardDrive();
 }
 
 void Robot::TestPeriodic() {}

@@ -9,12 +9,12 @@ public:
 
     Elevator();
     void setPosition(ELVTR::POSITION pos);
-    int tempGetPos();
-    double tempGetVel();
+    ELVTR::POSITION getPosition();
+    void update();
 
     void set(double rate);
 
 private:
     WPI_TalonSRX elevatorMotor{ELVTR::MTR};
-    int targetPos = ELVTR::POSITION::DEFAULT;
+    ELVTR::POSITION targetPos = ELVTR::POSITION::DEFAULT;
 };

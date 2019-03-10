@@ -14,17 +14,18 @@ public:
     void tank(double lrate, double rrate);
     void shift(bool toshift);
     void shift();
+    void update();
 
     void init();
 
 private:
     Transmission<WPI_TalonSRX> ltrm{{
-        {DRIVETRAIN::LTRANS::MTRA, Direction::Forward}, 
-        {DRIVETRAIN::LTRANS::MTRB, Direction::Forward}
+        {DRIVETRAIN::LTRANS::MTRA, Direction::Reverse}, 
+        {DRIVETRAIN::LTRANS::MTRB, Direction::Reverse}
     }, {DRIVETRAIN::LTRANS::ENCA, DRIVETRAIN::LTRANS::ENCB} }, 
     rtrm{{
-        {DRIVETRAIN::RTRANS::MTRA, Direction::Reverse},
-        {DRIVETRAIN::RTRANS::MTRB, Direction::Reverse}
+        {DRIVETRAIN::RTRANS::MTRA, Direction::Forward},
+        {DRIVETRAIN::RTRANS::MTRB, Direction::Forward}
     }, {DRIVETRAIN::RTRANS::ENCA, DRIVETRAIN::RTRANS::ENCB} };
 
     frc::Solenoid shifter{DRIVETRAIN::SOLENOID::PORT};
