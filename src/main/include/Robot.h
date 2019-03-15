@@ -49,7 +49,6 @@ private:
     bool jackOff = false; // lol
     bool jackOffManual = false;
     bool canJack = false;
-    INTAKE::PIVOT::POSITIONS pivotPos = INTAKE::PIVOT::POSITIONS::CARRY_POS;
 
     void StandardDrive();
     void JackOffDrive(); // DONT LAUGH

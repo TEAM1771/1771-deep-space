@@ -43,6 +43,7 @@ void Robot::RobotPeriodic() {}
  * make sure to add them to the chooser code above as well.
  */
 void Robot::AutonomousInit() {
+  canJack = false;
   m_autoSelected = m_chooser.GetSelected();
   // m_autoSelected = SmartDashboard::GetString("Auto Selector",
   //     kAutoNameDefault);
@@ -132,8 +133,6 @@ void Robot::StandardDrive() {
   }else{
     intake.setPosition(INTAKE::PIVOT::CARRY_POS);
   }
-
-  intake.demogorgon.Set(other.GetRawButton(JOY::OTHER::DEMOGORGON));
   //intake.update();
   
   if(other.GetRawButton(JOY::OTHER::ROLLERS_IN)){
@@ -154,7 +153,7 @@ void Robot::StandardDrive() {
 
 void Robot::JackOffManual() {
   static double time;
-  time = timer.Get();    
+  time = timer.Get();
 
   constexpr double first_stage = 2;
   constexpr double second_stage = first_stage+1.0; //5;
