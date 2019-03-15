@@ -49,10 +49,17 @@ private:
     bool jackOff = false; // lol
     bool jackOffManual = false;
     bool canJack = false;
+    bool elevatorMoving = false;
+
+    void JackManagement();
+    void ElevatorManagement();
+    void IntakeManagement();
 
     void StandardDrive();
     void JackOffDrive(); // DONT LAUGH
                         // LOL
     void JackOffManual();
+
+    void debug();
 
 };
