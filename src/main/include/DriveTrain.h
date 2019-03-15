@@ -16,8 +16,6 @@ public:
     void shift();
     void update();
 
-    void init();
-
 private:
     Transmission<WPI_TalonSRX> ltrm{{
         {DRIVETRAIN::LTRANS::MTRA, Direction::Reverse}, 

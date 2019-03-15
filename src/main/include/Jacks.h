@@ -10,8 +10,6 @@ class Jacks {
 public:
     Jacks();
     
-    void init();
-
     void raise();
     void raiseFront();
     void lower();

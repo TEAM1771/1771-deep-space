@@ -1,8 +1,6 @@
 #include <Jacks.h>
 
-Jacks::Jacks() {}
-
-void Jacks::init() {
+Jacks::Jacks() {
     front_left.SetSensorPhase(true);
     front_right.SetSensorPhase(true);
     back.SetSensorPhase(true);
@@ -30,7 +28,6 @@ void Jacks::init() {
     back.SetNeutralMode(NeutralMode::Brake);
     front_left.SetNeutralMode(NeutralMode::Brake);
     front_right.SetNeutralMode(NeutralMode::Brake);
-
 }
 
 void Jacks::lower() {

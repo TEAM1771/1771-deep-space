@@ -6,13 +6,6 @@ DriveTrain::DriveTrain(){
     shifter.Set(DRIVETRAIN::SOLENOID::DEFAULT);
 }
 
-void DriveTrain::init(){
-    ltrm->ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder, 0, 30);
-    rtrm->ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder, 0, 30);
-    ltrm->SetSensorPhase(true);
-    rtrm->SetSensorPhase(true);
-}
-
 void DriveTrain::update() {
     std::cout << "Left Pos: " << ltrm->GetSelectedSensorPosition() << "  |  Right Pos: " << rtrm->GetSelectedSensorPosition();
     std::cout << "  ---  Left Vel: " << ltrm->GetSelectedSensorVelocity() << "  |  Right Vel: " << rtrm->GetSelectedSensorVelocity() << "\n";
