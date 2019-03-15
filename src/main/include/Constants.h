@@ -40,6 +40,8 @@ namespace ELVTR {
     constexpr double D = 0.0; //20.5;
     constexpr double F = 0.0; //0.0;
 
+    constexpr double VRAMP = 0.2;
+
     enum POSITION {
         DEFAULT = 0,
         LOW = 150,
