@@ -2,6 +2,17 @@
 
 constexpr int timeoutPID = 10;
 
+namespace ULTRASONIC {
+    constexpr int ECHO_PORT = 4;
+    constexpr int TRIGGER_PORT = 5;
+
+    constexpr double MAX_DIST = 62.0;
+    constexpr double LIFT_FRONT_DIST = 62.0;
+    constexpr double REAR_LIFT_DIST = 51.0;
+    constexpr double SAFE_ON = 36.0;
+    
+}
+
 namespace DRIVETRAIN {
     namespace LTRANS {
         constexpr int MTRA = 1;
@@ -35,20 +46,28 @@ namespace DRIVETRAIN {
 namespace ELVTR {
     constexpr int MTR = 2;  
                               // Old Values for non-cragged elevator
-    constexpr double P = 0.1; //0.4;
-    constexpr double I = 0.0; //0.0;
-    constexpr double D = 0.0; //20.5;
-    constexpr double F = 0.0; //0.0;
+    constexpr double P = 0.2; // 0.1 
+    constexpr double I = 0.0; //0.0
+    constexpr double D = 0.0; //0.0
+    constexpr double F = 0.0; //0.0
 
     constexpr double VRAMP = 0.2;
 
     enum POSITION {
         DEFAULT = 0,
-        LOW = 150,
-        HATCH = 8000,
+        LOW = 400,
+        HATCH = 6050,
         CARGO = 16000,
-        HIGH = 25600,
+        HIGH = 25000,
     };
+    //OLD
+    // enum POSITION {
+    //     DEFAULT = 0,
+    //     LOW = 150,
+    //     HATCH = 7650,
+    //     CARGO = 16000,
+    //     HIGH = 25600,
+    // };
 }
 
 namespace JOY {
@@ -89,14 +108,14 @@ namespace INTAKE {
     namespace PIVOT {
         constexpr int MTR = 7;
         enum POSITIONS {
-            LOW_POS = -2700,
-            CARRY_POS = -450,
+            LOW_POS = -3300,
+            CARRY_POS = -440,
             HIGH_POS = 0,
         };
 
-        constexpr double P = 1.5;
+        constexpr double P = 2.8;
         constexpr double I = 0.00003;
-        constexpr double D = 0.05;
+        constexpr double D = 0.2;
         constexpr double F = 0.0;
 
     }
@@ -118,7 +137,7 @@ namespace INTAKE {
 namespace JACKS {
     namespace FRONT_LEFT {
         constexpr int PORT = 4;
-        constexpr double P = 0.2;
+        constexpr double P = 0.4;
         constexpr double I = 0.0;
         constexpr double D = 0.0;
 
@@ -127,7 +146,7 @@ namespace JACKS {
 
     namespace FRONT_RIGHT {
         constexpr int PORT = 9;
-        constexpr double P = 0.2;
+        constexpr double P = 0.4;
         constexpr double I = 0.0;
         constexpr double D = 0.0;
 
@@ -136,7 +155,7 @@ namespace JACKS {
 
     namespace BACK {
         constexpr int PORT = 5;
-        constexpr double P = 0.2;
+        constexpr double P = 0.4;
         constexpr double I = 0.0;
         constexpr double D = 0.0;
 

@@ -13,6 +13,7 @@
 #include <frc/smartdashboard/SendableChooser.h>
 #include <frc/Joystick.h>
 #include <frc/Timer.h>
+#include <frc/Ultrasonic.h>
 
 #include <DriveTrain.h>
 #include <Intake.h>
@@ -43,6 +44,7 @@ private:
     frc::Joystick left{JOY::LEFT::PORT}, right{JOY::RIGHT::PORT}, other{JOY::OTHER::PORT};
 
     frc::Timer timer{};
+    frc::Ultrasonic ultrasonic{ULTRASONIC::ECHO_PORT, ULTRASONIC::TRIGGER_PORT};
 
 
     // don't laugh
@@ -50,6 +52,8 @@ private:
     bool jackOffManual = false;
     bool canJack = false;
     bool elevatorMoving = false;
+    int jackStage = 0;
+    bool frontLiftStarted = false;
 
     void JackManagement();
     void ElevatorManagement();
@@ -58,6 +62,7 @@ private:
     void StandardDrive();
     void JackOffDrive(); // DONT LAUGH
                         // LOL
+    void JackOffDriveTIMED();
     void JackOffManual();
 
     void debug();

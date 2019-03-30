@@ -13,7 +13,7 @@ Intake::Intake() {
     pivot.Config_kD(0, INTAKE::PIVOT::D, timeoutPID);
     pivot.Config_kF(0, INTAKE::PIVOT::F, timeoutPID);
 
-    pivot.ConfigPeakOutputForward(1);
+    pivot.ConfigPeakOutputForward(0.7);
     pivot.ConfigPeakOutputReverse(-0.3);
     pivot.ConfigNominalOutputForward(0);
     pivot.ConfigNominalOutputReverse(0);

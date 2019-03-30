@@ -25,6 +25,8 @@ Elevator::Elevator(){
     //elevatorMotor.ConfigMotionCruiseVelocity();
 
     elevatorMotor.SetSelectedSensorPosition(0);
+    elevatorMotor.SetSensorPhase(1);
+    elevatorMotor.SetInverted(1);
 }
 
 void Elevator::update() {

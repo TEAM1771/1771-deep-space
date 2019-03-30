@@ -1,13 +1,13 @@
 #include <Jacks.h>
 
 Jacks::Jacks() {
-    front_left.SetSensorPhase(true);
+    front_left.SetSensorPhase(false);
     front_right.SetSensorPhase(true);
-    back.SetSensorPhase(true);
+    back.SetSensorPhase(false);
 
-    front_left.SetInverted(1);
+    front_left.SetInverted(0);
     front_right.SetInverted(0);
-    back.SetInverted(0);
+    back.SetInverted(1);
 
     front_left.Config_kP(0, JACKS::FRONT_LEFT::P, timeoutPID);
     front_left.Config_kI(0, JACKS::FRONT_LEFT::I, timeoutPID);
@@ -89,7 +89,15 @@ void Jacks::update() {
     std::cout << back.GetSelectedSensorPosition() << " " << front_left.GetSelectedSensorPosition() << " " << front_right.GetSelectedSensorPosition() << "\n";
 }
 
+bool Jacks::isFrontStopped() {
+    double front_speed_total = 20;//front_left.Get()+front_right.Get();
+    return fabs(front_speed_total) <= 0.05;
+}
 
+bool Jacks::isBackStopped() {
+    double back_speed = back.GetSelectedSensorVelocity();
+    return (fabs(back_speed) <= 10);
+}
 
 void Jacks::drive(double rate) {
     driver.Set(ControlMode::PercentOutput, rate);
