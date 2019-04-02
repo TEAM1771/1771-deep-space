@@ -40,6 +40,8 @@ void Robot::TeleopPeriodic() {
   debug();
   if(jackOffManual)
     JackOffManual();
+  else if(jackOffTimed)
+    JackOffDriveTIMED();
   else if(jackOff)
     JackOffDrive();
   else
@@ -55,8 +57,8 @@ void Robot::TestPeriodic() {}
 void Robot::debug() {
   //driveTrain.update();
   //std::cout << "Ultrasonic Reading: " << ultrasonic.GetRangeInches() << "\n";
-  //elevator.update();
-  intake.update();
+  elevator.update();
+  //intake.update();
   //jacks.update();
 }
 
@@ -121,20 +123,23 @@ void Robot::JackManagement() {
   jackStage = 0;
 
   if(canJack){
-    bool hab1to3 = right.GetRawButton(JOY::RIGHT::JACK_OFF) && left.GetRawButton(JOY::LEFT::JACK_OFF);
-    bool hab1to3TIMED = right.GetRawButton(JOY::RIGHT::JACK_OFF_HAB2) && left.GetRawButton(JOY::LEFT::JACK_OFF_HAB2);
-    //bool hab2to3 = right.GetRawButton(JOY::RIGHT::JACK_OFF_HAB2to3) && left.GetRawButton(JOY::LEFT::JACK_OFF_HAB2to3);
+    bool const hab1to3 = right.GetRawButton(JOY::RIGHT::JACK_OFF) && left.GetRawButton(JOY::LEFT::JACK_OFF);
+    bool const hab1to3TIMED = right.GetRawButton(JOY::RIGHT::JACK_OFF_HAB3TIMED) && left.GetRawButton(JOY::LEFT::JACK_OFF_HAB3TIMED);
+    bool const hab1to2 = right.GetRawButton(JOY::RIGHT::JACK_OFF_HAB2) && left.GetRawButton(JOY::LEFT::JACK_OFF_HAB2);
+    bool const hab2to3 = right.GetRawButton(JOY::RIGHT::JACK_OFF_HAB2to3) && left.GetRawButton(JOY::LEFT::JACK_OFF_HAB2to3);
 
-    if((jackOff = (hab1to3 || hab1to3TIMED)) || (jackOffManual = false)){
+    if((jackOff = hab1to3 || hab1to2) || (jackOffTimed = hab1to3TIMED) || (jackOffManual = hab2to3)){
       driveTrain.tank(0.35, 0.35);
       jacks.drive(0.4);
 
       if(hab1to3)
         jacks.lower();
+      else if(hab1to2)
+        jacks.lowerHAB2();
       else if(hab1to3TIMED)
         jacks.lower();
-      // else if(hab2to3)
-      //   jacks.lowerHAB2to3();
+      else if(hab2to3)
+        jacks.lowerHAB2to3();
 
       timer.Reset();
       timer.Start();
@@ -144,24 +149,24 @@ void Robot::JackManagement() {
 
 
 void Robot::JackOffManual() {
-  // static double time;
-  // time = timer.Get();
+  static double time;
+  time = timer.Get();
 
-  // constexpr double first_stage = 2;
-  // constexpr double second_stage = first_stage+1.0; //5;
+  constexpr double first_stage = 2;
+  constexpr double second_stage = first_stage+1.0; //5;
 
-  // if(time > first_stage && time <= second_stage){
-  //   driveTrain.tank(0, 0);
-  //   jacks.drive(0);
-  //   jacks.raiseFront();
-  // }else if(time > second_stage){
-  //   driveTrain.tank(-left.GetY(), -right.GetY());
-  //   jacks.drive((left.GetY()+right.GetY())/2.0+0.1);
-  //   if(left.GetRawButton(JOY::LEFT::SMALL_LIFT_BACK_JACK))
-  //     jacks.raiseBackSmall();
-  //   else if(right.GetRawButton(JOY::RIGHT::SMALL_DROP_BACK_JACK))
-  //     jacks.lowerBackSmall();
-  // }
+  if(time > first_stage && time <= second_stage){
+    driveTrain.tank(0, 0);
+    jacks.drive(0);
+    jacks.raiseFront();
+  }else if(time > second_stage){
+    driveTrain.tank(-left.GetY(), -right.GetY());
+    jacks.drive((left.GetY()+right.GetY())/2.0+0.1);
+    if(left.GetRawButton(JOY::LEFT::SMALL_LIFT_BACK_JACK))
+      jacks.raiseBackSmall();
+    else if(right.GetRawButton(JOY::RIGHT::SMALL_DROP_BACK_JACK))
+      jacks.lowerBackSmall();
+  }
 }
 
 void Robot::JackOffDrive() {
@@ -176,9 +181,9 @@ void Robot::JackOffDrive() {
   if(!startLiftFront && time < .5) return;
 
   if(distance >= ULTRASONIC::LIFT_FRONT_DIST){
-    jacks.lower();
+    //jacks.lower();
     driveTrain.tank(0.35, 0.35);
-    jacks.drive(0.4);
+    jacks.drive(0.2);
   }else if(distance <= ULTRASONIC::LIFT_FRONT_DIST && distance >= ULTRASONIC::REAR_LIFT_DIST){
     
     if(!startLiftFront){
@@ -230,6 +235,7 @@ void Robot::JackOffDriveTIMED() {
     jacks.drive(0);
   }else if(time > fifth_stage){
     jackOff = false;
+    jackOffTimed = false;
   }
 }
 

@@ -39,6 +39,11 @@ void Jacks::lower() {
         back.Set(ControlMode::Position, b = JACKS::BACK::DROP_HEIGHT);
 }
 
+void Jacks::lowerBack() {
+    if(b != JACKS::BACK::DROP_HEIGHT)
+        back.Set(ControlMode::Position, b = JACKS::BACK::DROP_HEIGHT);
+}
+
 void Jacks::lowerHAB2() {
     if(fl != (7.0/19.0)*JACKS::DROP_HEIGHT)
         front_left.Set(ControlMode::Position, fl = (7.0/19.0)*JACKS::DROP_HEIGHT);

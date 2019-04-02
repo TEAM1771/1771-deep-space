@@ -7,7 +7,7 @@ namespace ULTRASONIC {
     constexpr int TRIGGER_PORT = 5;
 
     constexpr double MAX_DIST = 62.0;
-    constexpr double LIFT_FRONT_DIST = 62.0;
+    constexpr double LIFT_FRONT_DIST = 60.05;
     constexpr double REAR_LIFT_DIST = 51.0;
     constexpr double SAFE_ON = 36.0;
     
@@ -55,8 +55,8 @@ namespace ELVTR {
 
     enum POSITION {
         DEFAULT = 0,
-        LOW = 400,
-        HATCH = 6050,
+        LOW = 150,
+        HATCH = 5350,
         CARGO = 16000,
         HIGH = 25000,
     };
@@ -75,6 +75,7 @@ namespace JOY {
         constexpr int PORT = 0;
         constexpr int JACK_OFF = 1;
         constexpr int JACK_OFF_HAB2 = 3;
+        constexpr int JACK_OFF_HAB3TIMED = 8;
         constexpr int JACK_OFF_HAB2to3 = 4;
         constexpr int SMALL_LIFT_BACK_JACK = 6;
     }
@@ -83,6 +84,7 @@ namespace JOY {
         constexpr int PORT = 1;
         constexpr int JACK_OFF = 1;
         constexpr int JACK_OFF_HAB2 = 3;
+        constexpr int JACK_OFF_HAB3TIMED = 9;
         constexpr int JACK_OFF_HAB2to3 = 5;
         constexpr int SMALL_DROP_BACK_JACK = 11;
     }
@@ -108,12 +110,13 @@ namespace INTAKE {
     namespace PIVOT {
         constexpr int MTR = 7;
         enum POSITIONS {
-            LOW_POS = -3300,
-            CARRY_POS = -440,
+            LOW_POS = -3100,
+            //OLDCARRY_POS = -440,
+            CARRY_POS = -680,
             HIGH_POS = 0,
         };
 
-        constexpr double P = 2.8;
+        constexpr double P = 1.8;
         constexpr double I = 0.00003;
         constexpr double D = 0.2;
         constexpr double F = 0.0;

@@ -15,6 +15,7 @@ public:
     void raiseBackSmall();
 
     void lower();
+    void lowerBack();
     void lowerHAB2();
     void lowerHAB2to3();
     void lowerBackSmall();

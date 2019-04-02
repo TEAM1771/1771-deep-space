@@ -50,6 +50,7 @@ private:
     // don't laugh
     bool jackOff = false; // lol
     bool jackOffManual = false;
+    bool jackOffTimed = false;
     bool canJack = false;
     bool elevatorMoving = false;
     int jackStage = 0;
