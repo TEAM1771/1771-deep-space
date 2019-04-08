@@ -56,8 +56,8 @@ void Robot::TestPeriodic() {}
 
 void Robot::debug() {
   //driveTrain.update();
-  //std::cout << "Ultrasonic Reading: " << ultrasonic.GetRangeInches() << "\n";
-  elevator.update();
+  std::cout << "Ultrasonic Reading: " << ultrasonic.GetRangeInches() << "\n";
+  //elevator.update();
   //intake.update();
   //jacks.update();
 }
@@ -84,6 +84,9 @@ void Robot::IntakeManagement() {
   }else if(other.GetRawButton(JOY::OTHER::INTAKE_LOW)){
     intake.setPosition(INTAKE::PIVOT::LOW_POS);
   }
+  // else if(other.GetRawButton(JOY::OTHER::ELVTR_POS_HATCH)){
+  //   intake.setPosition(INTAKE::PIVOT::HATCH_POS);
+  // }
 
   if(elevatorMoving && intake.getPosition() == INTAKE::PIVOT::HIGH_POS)
     intake.setPosition(INTAKE::PIVOT::CARRY_POS);
@@ -172,7 +175,10 @@ void Robot::JackOffManual() {
 void Robot::JackOffDrive() {
   
   static double distance;
+  static bool frontOverride = false;
   static bool startLiftFront = false;
+
+  frontOverride |= right.GetRawButton(JOY::RIGHT::OVERRIDE_ULTRA_LIFT_FRONT);
 
   double const time = timer.Get();
 
@@ -183,8 +189,8 @@ void Robot::JackOffDrive() {
   if(distance >= ULTRASONIC::LIFT_FRONT_DIST){
     //jacks.lower();
     driveTrain.tank(0.35, 0.35);
-    jacks.drive(0.2);
-  }else if(distance <= ULTRASONIC::LIFT_FRONT_DIST && distance >= ULTRASONIC::REAR_LIFT_DIST){
+    jacks.drive(0.4);
+  }else if((distance <= ULTRASONIC::LIFT_FRONT_DIST && distance >= ULTRASONIC::REAR_LIFT_DIST) || frontOverride){
     
     if(!startLiftFront){
       startLiftFront = true;

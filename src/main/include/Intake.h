@@ -7,7 +7,7 @@
 
 class Intake {
 public:
-    WPI_TalonSRX rollers { INTAKE::ROLLERS::MTR };
+    WPI_VictorSPX rollers { INTAKE::ROLLERS::MTR };
     Intake();
 
     void setPosition(INTAKE::PIVOT::POSITIONS p);
@@ -25,5 +25,6 @@ public:
 
 private:
     WPI_TalonSRX pivot { INTAKE::PIVOT::MTR };
+    WPI_TalonSRX pivot_follower { INTAKE::PIVOT::MTR_FOLLOWER };
     INTAKE::PIVOT::POSITIONS curpos;
 };
