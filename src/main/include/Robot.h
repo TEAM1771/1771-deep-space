@@ -15,6 +15,8 @@
 #include <frc/Timer.h>
 #include <frc/Ultrasonic.h>
 
+#include <rev/CANSparkMax.h>
+
 #include <DriveTrain.h>
 #include <Intake.h>
 #include <Jacks.h>
@@ -45,7 +47,6 @@ private:
 
     frc::Timer timer{};
     frc::Ultrasonic ultrasonic{ULTRASONIC::ECHO_PORT, ULTRASONIC::TRIGGER_PORT};
-
 
     // don't laugh
     bool jackOff = false; // lol

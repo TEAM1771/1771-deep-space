@@ -17,7 +17,8 @@ public:
     void update();
 
 private:
-    Transmission<WPI_TalonSRX> ltrm{{
+    Transmission<rev::CANSparkMax> ltrm{{
+    // Transmission<WPI_TalonSRX> ltrm{{
         {DRIVETRAIN::LTRANS::MTRA, Direction::Reverse}, 
         {DRIVETRAIN::LTRANS::MTRB, Direction::Reverse}
     }, {DRIVETRAIN::LTRANS::ENCA, DRIVETRAIN::LTRANS::ENCB} }, 
@@ -25,6 +26,7 @@ private:
         {DRIVETRAIN::RTRANS::MTRA, Direction::Forward},
         {DRIVETRAIN::RTRANS::MTRB, Direction::Forward}
     }, {DRIVETRAIN::RTRANS::ENCA, DRIVETRAIN::RTRANS::ENCB} };
+
 
     frc::Solenoid shifter{DRIVETRAIN::SOLENOID::PORT};
 
