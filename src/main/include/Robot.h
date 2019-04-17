@@ -14,6 +14,8 @@
 #include <frc/Joystick.h>
 #include <frc/Timer.h>
 #include <frc/Ultrasonic.h>
+#include <networktables/NetworkTable.h>
+#include <networktables/NetworkTableInstance.h>
 
 #include <rev/CANSparkMax.h>
 
@@ -48,12 +50,15 @@ private:
     frc::Timer timer{};
     frc::Ultrasonic ultrasonic{ULTRASONIC::ECHO_PORT, ULTRASONIC::TRIGGER_PORT};
 
+    std::shared_ptr<NetworkTable> table;
+
     // don't laugh
     bool jackOff = false; // lol
     bool jackOffManual = false;
     bool jackOffTimed = false;
     bool canJack = false;
     bool elevatorMoving = false;
+    bool inAuton = true;
     int jackStage = 0;
     bool frontLiftStarted = false;
 

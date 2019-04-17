@@ -16,12 +16,16 @@ void Robot::RobotInit() {
   m_chooser.AddOption(kAutoNameCustom, kAutoNameCustom);
   frc::SmartDashboard::PutData("Auto Modes", &m_chooser);
   ultrasonic.SetAutomaticMode(true);
+  table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
+  table->PutNumber("camMode", 1);
 }
 
 void Robot::RobotPeriodic() {}
 
 void Robot::AutonomousInit() {
   canJack = false;
+  inAuton = true;
+  driveTrain.canShift(false);
 }
 
 void Robot::AutonomousPeriodic() {
@@ -34,6 +38,7 @@ void Robot::DisabledPeriodic() {
 
 void Robot::TeleopInit() {
   canJack = true;
+  inAuton = false;
 }
 
 void Robot::TeleopPeriodic() {
@@ -112,7 +117,7 @@ void Robot::ElevatorManagement() {
     elevatorMoving = true;
   }else if(other.GetRawButton(JOY::OTHER::ELVTR_POS_LOW)){
     elevator.setPosition(ELVTR::POSITION::LOW);
-    driveTrain.canShift(true);
+    driveTrain.canShift(true && !inAuton);
     elevatorMoving = true;
   }else if(other.GetRawButton(JOY::OTHER::ELVTR_POS_HATCH)){
     elevator.setPosition(ELVTR::POSITION::HATCH);
