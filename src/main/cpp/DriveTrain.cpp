@@ -11,15 +11,22 @@ void DriveTrain::update() {
     std::cout << "  ---  Left Vel: " << ltrm->getEncoderRate() << "  |  Right Vel: " << rtrm->getEncoderRate() << "\n";
 }
 
+void DriveTrain::canShift(bool shiftability){
+    can_shift = shiftability;
+    shift(DRIVETRAIN::SOLENOID::SHIFT_DOWN);
+}
+
 void DriveTrain::tank(double lrate, double rrate) {
     ltrm->Set(ControlMode::PercentOutput, lrate);
     rtrm->Set(ControlMode::PercentOutput, rrate);
 
-    double const avgVelocity = (ltrm->getEncoderRate()+rtrm->getEncoderRate())/2.0;
-    if(shift_status == DRIVETRAIN::SOLENOID::SHIFT_DOWN && fabs(avgVelocity) >= DRIVETRAIN::SOLENOID::SHIFT_UP_SPEED)
-        shift(DRIVETRAIN::SOLENOID::SHIFT_UP);
-    else if(shift_status == DRIVETRAIN::SOLENOID::SHIFT_UP && fabs(avgVelocity) <= DRIVETRAIN::SOLENOID::SHIFT_DOWN_SPEED)
-        shift(DRIVETRAIN::SOLENOID::SHIFT_DOWN);
+    if(can_shift){
+        double const avgVelocity = (ltrm->getEncoderRate()+rtrm->getEncoderRate())/2.0;
+        if(shift_status == DRIVETRAIN::SOLENOID::SHIFT_DOWN && fabs(avgVelocity) >= DRIVETRAIN::SOLENOID::SHIFT_UP_SPEED)
+            shift(DRIVETRAIN::SOLENOID::SHIFT_UP);
+        else if(shift_status == DRIVETRAIN::SOLENOID::SHIFT_UP && fabs(avgVelocity) <= DRIVETRAIN::SOLENOID::SHIFT_DOWN_SPEED)
+            shift(DRIVETRAIN::SOLENOID::SHIFT_DOWN);
+    }
 }
 
 void DriveTrain::shift(bool ornottoshift){

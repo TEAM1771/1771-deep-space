@@ -84,9 +84,6 @@ void Robot::IntakeManagement() {
   }else if(other.GetRawButton(JOY::OTHER::INTAKE_LOW)){
     intake.setPosition(INTAKE::PIVOT::LOW_POS);
   }
-  // else if(other.GetRawButton(JOY::OTHER::ELVTR_POS_HATCH)){
-  //   intake.setPosition(INTAKE::PIVOT::HATCH_POS);
-  // }
 
   if(elevatorMoving && intake.getPosition() == INTAKE::PIVOT::HIGH_POS)
     intake.setPosition(INTAKE::PIVOT::CARRY_POS);
@@ -107,15 +104,19 @@ void Robot::ElevatorManagement() {
   elevatorMoving = false;
   if(other.GetRawButton(JOY::OTHER::ELVTR_POS_HIGH)){
     elevator.setPosition(ELVTR::POSITION::HIGH);
+    driveTrain.canShift(false);
     elevatorMoving = true;
   }else if(other.GetRawButton(JOY::OTHER::ELVTR_POS_MID)){
     elevator.setPosition(ELVTR::POSITION::CARGO);
+    driveTrain.canShift(false);
     elevatorMoving = true;
   }else if(other.GetRawButton(JOY::OTHER::ELVTR_POS_LOW)){
     elevator.setPosition(ELVTR::POSITION::LOW);
+    driveTrain.canShift(true);
     elevatorMoving = true;
   }else if(other.GetRawButton(JOY::OTHER::ELVTR_POS_HATCH)){
     elevator.setPosition(ELVTR::POSITION::HATCH);
+    driveTrain.canShift(false);
     elevatorMoving = true;
   }
 }

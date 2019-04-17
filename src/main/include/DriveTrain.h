@@ -12,8 +12,12 @@ class DriveTrain {
 public:
     DriveTrain();
     void tank(double lrate, double rrate);
+
     void shift(bool toshift);
     void shift();
+
+    void canShift(bool status);
+
     void update();
 
 private:
@@ -31,4 +35,5 @@ private:
     frc::Solenoid shifter{DRIVETRAIN::SOLENOID::PORT};
 
     bool shift_status = DRIVETRAIN::SOLENOID::DEFAULT;
+    bool can_shift = true;
 };
