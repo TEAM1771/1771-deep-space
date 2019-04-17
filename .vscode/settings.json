@@ -79,6 +79,7 @@
     "clocale": "cpp",
     "deque": "cpp",
     "unordered_map": "cpp",
-    "fstream": "cpp"
+    "fstream": "cpp",
+    "complex": "cpp"
   }
 }
