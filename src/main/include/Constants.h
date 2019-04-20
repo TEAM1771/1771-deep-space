@@ -15,16 +15,16 @@ namespace ULTRASONIC {
 
 namespace DRIVETRAIN {
     namespace LTRANS {
-        constexpr int MTRA = 1;
-        constexpr int MTRB = 17;
+        constexpr int MTRA = 21;
+        constexpr int MTRB = 22;
 
         constexpr int ENCA = 0;
         constexpr int ENCB = 1;
     }
 
     namespace RTRANS {
-        constexpr int MTRA = 11;
-        constexpr int MTRB = 12;
+        constexpr int MTRA = 1;
+        constexpr int MTRB = 17;
 
         constexpr int ENCA = 2;
         constexpr int ENCB = 3;
@@ -38,8 +38,8 @@ namespace DRIVETRAIN {
         constexpr bool SHIFT_DOWN = !SHIFT_UP;
         constexpr bool DEFAULT = SHIFT_DOWN;
 
-        constexpr int SHIFT_UP_SPEED = 8000; // 2900 in 2016
-        constexpr int SHIFT_DOWN_SPEED = 7999; // 2200 in 2016
+        constexpr int SHIFT_UP_SPEED = 4500; // 2900 in 2016
+        constexpr int SHIFT_DOWN_SPEED = 3500; // 2200 in 2016
     }
 }
 
@@ -56,6 +56,7 @@ namespace ELVTR {
     enum POSITION {
         DEFAULT = 0,
         LOW = 150,
+        LOW_ROCKET = 1020,
         HATCH = 3650,
         CARGO = 16000,
         HIGH = 25000,

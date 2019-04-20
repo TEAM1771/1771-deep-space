@@ -60,8 +60,9 @@ void Robot::TestPeriodic() {}
  * * * * * * * * * * * */
 
 void Robot::debug() {
+  //std::cout << "Throttle Value: " << other.GetThrottle() << "\n";
   //driveTrain.update();
-  std::cout << "Ultrasonic Reading: " << ultrasonic.GetRangeInches() << "\n";
+  //std::cout << "Ultrasonic Reading: " << ultrasonic.GetRangeInches() << "\n";
   //elevator.update();
   //intake.update();
   //jacks.update();
@@ -107,23 +108,44 @@ void Robot::IntakeManagement() {
 void Robot::ElevatorManagement() {
   // Set the elevator to the appropriate position and set the "elevatorMoving" to true if it is moving
   elevatorMoving = false;
-  if(other.GetRawButton(JOY::OTHER::ELVTR_POS_HIGH)){
-    elevator.setPosition(ELVTR::POSITION::HIGH);
-    driveTrain.canShift(false);
-    elevatorMoving = true;
-  }else if(other.GetRawButton(JOY::OTHER::ELVTR_POS_MID)){
-    elevator.setPosition(ELVTR::POSITION::CARGO);
-    driveTrain.canShift(false);
-    elevatorMoving = true;
-  }else if(other.GetRawButton(JOY::OTHER::ELVTR_POS_LOW)){
-    elevator.setPosition(ELVTR::POSITION::LOW);
-    driveTrain.canShift(true && !inAuton);
-    elevatorMoving = true;
-  }else if(other.GetRawButton(JOY::OTHER::ELVTR_POS_HATCH)){
-    elevator.setPosition(ELVTR::POSITION::HATCH);
-    driveTrain.canShift(false);
-    elevatorMoving = true;
-  }
+
+  // if(other.GetThrottle() > 0){
+    if(other.GetRawButton(JOY::OTHER::ELVTR_POS_HIGH)){
+      elevator.setPosition(ELVTR::POSITION::HIGH);
+      driveTrain.canShift(false);
+      elevatorMoving = true;
+    }else if(other.GetRawButton(JOY::OTHER::ELVTR_POS_MID)){
+      elevator.setPosition(ELVTR::POSITION::CARGO);
+      driveTrain.canShift(false);
+      elevatorMoving = true;
+    }else if(other.GetRawButton(JOY::OTHER::ELVTR_POS_LOW)){
+      elevator.setPosition(ELVTR::POSITION::LOW);
+      driveTrain.canShift(true && !inAuton);
+      elevatorMoving = true;
+    }else if(other.GetRawButton(JOY::OTHER::ELVTR_POS_HATCH)){
+      elevator.setPosition(ELVTR::POSITION::HATCH);
+      driveTrain.canShift(true && !inAuton);
+      elevatorMoving = true;
+    }
+  // }else{ // If throttle is up
+  //   if(other.GetRawButton(JOY::OTHER::ELVTR_POS_HIGH)){
+  //     elevator.setPosition(ELVTR::POSITION::HIGH);
+  //     driveTrain.canShift(false);
+  //     elevatorMoving = true;
+  //   }else if(other.GetRawButton(JOY::OTHER::ELVTR_POS_MID)){
+  //     elevator.setPosition(ELVTR::POSITION::CARGO);
+  //     driveTrain.canShift(false);
+  //     elevatorMoving = true;
+  //   }else if(other.GetRawButton(JOY::OTHER::ELVTR_POS_LOW)){
+  //     elevator.setPosition(ELVTR::POSITION::LOW_ROCKET); // Change low point to low for rocket
+  //     driveTrain.canShift(true && !inAuton);
+  //     elevatorMoving = true;
+  //   }else if(other.GetRawButton(JOY::OTHER::ELVTR_POS_HATCH)){
+  //     elevator.setPosition(ELVTR::POSITION::HATCH);
+  //     driveTrain.canShift(true && !inAuton);
+  //     elevatorMoving = true;
+  //   }
+  // }
 }
 
 void Robot::JackManagement() {
@@ -185,6 +207,7 @@ void Robot::JackOffDrive() {
   static bool startLiftFront = false;
 
   frontOverride |= right.GetRawButton(JOY::RIGHT::OVERRIDE_ULTRA_LIFT_FRONT);
+  if(frontOverride) std::cout << "Front Override!\n";
 
   double const time = timer.Get();
 
@@ -192,12 +215,16 @@ void Robot::JackOffDrive() {
 
   if(!startLiftFront && time < .5) return;
 
-  if(distance >= ULTRASONIC::LIFT_FRONT_DIST){
+  if(distance >= ULTRASONIC::LIFT_FRONT_DIST && !frontOverride){
     //jacks.lower();
     driveTrain.tank(0.35, 0.35);
     jacks.drive(0.4);
-  }else if((distance <= ULTRASONIC::LIFT_FRONT_DIST && distance >= ULTRASONIC::REAR_LIFT_DIST) || frontOverride){
     
+    if(right.GetRawButton(JOY::RIGHT::JACK_OFF) && left.GetRawButton(JOY::LEFT::JACK_OFF))
+      jacks.lower();
+    
+
+  }else if((distance <= ULTRASONIC::LIFT_FRONT_DIST && distance >= ULTRASONIC::REAR_LIFT_DIST) || (frontOverride && distance >= ULTRASONIC::REAR_LIFT_DIST)){
     if(!startLiftFront){
       startLiftFront = true;
       timer.Reset();
@@ -219,6 +246,7 @@ void Robot::JackOffDrive() {
     jacks.drive(0);
     jackOff = false;
     startLiftFront = false;
+    frontOverride = false;
   }
 }
 

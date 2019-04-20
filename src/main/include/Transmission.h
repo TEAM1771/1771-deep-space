@@ -65,6 +65,11 @@ public:
 	Transmission(std::initializer_list<std::pair<int, Direction>> motor_info, std::pair<int,int> encPort) : 
 			leader( (motor_info.begin())->first, rev::CANSparkMaxLowLevel::MotorType::kBrushless ),
 			enc( leader.GetEncoder() ) {
+
+		// Restore Factory Defaults for leader
+		leader.RestoreFactoryDefaults();
+		leader.SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
+
 		// Initialize leader motor and create a const variable to store the leader motor's info
 		auto const leader_info = *(motor_info.begin());
 		leader.SetInverted(leader_info.second);
@@ -76,6 +81,8 @@ public:
 
 		// Invert followers depending on direction and set to follow mode
 		for(int i = 0; i < motor_info.size()-1; i++){
+			followers[i]->RestoreFactoryDefaults();
+			followers[i]->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
 			followers[i]->Follow(leader, (motor_info.begin()+i+1)->second);
 		}
 	}

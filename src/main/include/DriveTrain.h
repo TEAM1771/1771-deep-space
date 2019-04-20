@@ -24,7 +24,7 @@ private:
     Transmission<rev::CANSparkMax> ltrm{{
     // Transmission<WPI_TalonSRX> ltrm{{
         {DRIVETRAIN::LTRANS::MTRA, Direction::Reverse}, 
-        {DRIVETRAIN::LTRANS::MTRB, Direction::Reverse}
+        {DRIVETRAIN::LTRANS::MTRB, Direction::Forward}
     }, {DRIVETRAIN::LTRANS::ENCA, DRIVETRAIN::LTRANS::ENCB} }, 
     rtrm{{
         {DRIVETRAIN::RTRANS::MTRA, Direction::Forward},
